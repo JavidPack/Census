@@ -394,9 +394,11 @@ namespace Census
 						if(UILinkPointNavigator.Shortcuts.NPCS_LastHovered > -1 && CensusConfigClient.Instance.ShowLocatingArrow) {
 							//Main.NewText("" + Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered].Center.X);
 							var npc = Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered];
+							var headIndex = NPC.TypeToHeadIndex(npc.type); // if NPCS_LastHovered is 0, it could also be the housing query button.
 							var vector = npc.Center - Main.LocalPlayer.Center;
 							var distance = vector.Length();
-							if (distance > 40) {
+							if (headIndex > -1 && distance > 40) {
+								var headTexture = Main.npcHeadTexture[headIndex];
 								var offset = Vector2.Normalize(vector) * Math.Min(70, distance - 20);
 								float rotation = vector.ToRotation() + (float)(3 * Math.PI / 4);
 								var drawPosition = Main.LocalPlayer.Center - Main.screenPosition + offset;
@@ -404,8 +406,8 @@ namespace Census
 								Main.spriteBatch.Draw(Main.cursorTextures[0], drawPosition, null, CensusConfigClient.Instance.ArrowColor * fade, rotation, Main.cursorTextures[1].Size() / 2, new Vector2(1.5f), SpriteEffects.None, 0);
 
 								drawPosition -= Vector2.Normalize(vector) * 20;
-
-								Main.spriteBatch.Draw(Main.npcHeadTexture[NPC.TypeToHeadIndex(npc.type)], drawPosition, null, Color.White * fade, 0, Main.npcHeadTexture[NPC.TypeToHeadIndex(npc.type)].Size() / 2, Vector2.One, npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+								
+								Main.spriteBatch.Draw(headTexture, drawPosition, null, Color.White * fade, 0, headTexture.Size() / 2, Vector2.One, npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
 							}
 						}
 

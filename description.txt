@@ -7,3 +7,5 @@ Mods can add the conditions for their town easily. In PostSetupContent, call cen
 Currently doesn't work in multi-player. Feedback greatly appreciated. Townspeople spawn about 2 minutes after day begins, so the data shown might not be up to date until that check happens.
 
 For multi-player, the server console command "TownProgress" can be useful for now.
+
+You can also hover over Town NPC in the housing menu to see an arrow pointing to their location. This feature can be toggled off in the config.

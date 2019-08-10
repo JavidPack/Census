@@ -390,6 +390,24 @@ namespace Census
 						}
 						hoverText = text;
 
+						if(UILinkPointNavigator.Shortcuts.NPCS_LastHovered > -1 && CensusConfigClient.Instance.ShowLocatingArrow) {
+							//Main.NewText("" + Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered].Center.X);
+							var npc = Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered];
+							var vector = npc.Center - Main.LocalPlayer.Center;
+							var distance = vector.Length();
+							if (distance > 40) {
+								var offset = Vector2.Normalize(vector) * Math.Min(70, distance - 20);
+								float rotation = vector.ToRotation() + (float)(3 * Math.PI / 4);
+								var drawPosition = Main.LocalPlayer.Center - Main.screenPosition + offset;
+								float fade = Math.Min(1f, (distance - 20) / 70);
+								Main.spriteBatch.Draw(Main.cursorTextures[0], drawPosition, null, CensusConfigClient.Instance.ArrowColor * fade, rotation, Main.cursorTextures[1].Size() / 2, new Vector2(1.5f), SpriteEffects.None, 0);
+
+								drawPosition -= Vector2.Normalize(vector) * 20;
+
+								Main.spriteBatch.Draw(Main.npcHeadTexture[NPC.TypeToHeadIndex(npc.type)], drawPosition, null, Color.White * fade, 0, Main.npcHeadTexture[NPC.TypeToHeadIndex(npc.type)].Size() / 2, Vector2.One, npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+							}
+						}
+
 						Main.inventoryScale = oldInventoryScale;
 						return true;
 					},
@@ -415,12 +433,12 @@ namespace Census
 				}
 				else
 				{
-					ErrorLogger.Log("Census Call Error: Unknown Message: " + message);
+					Logger.Error("Census Call Error: Unknown Message: " + message);
 				}
 			}
 			catch (Exception e)
 			{
-				ErrorLogger.Log("Census Call Error: " + e.StackTrace + e.Message);
+				Logger.Error("Census Call Error: " + e.StackTrace + e.Message);
 			}
 			return "Failure";
 		}

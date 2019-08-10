@@ -132,6 +132,7 @@ namespace Census
 		public override void Unload()
 		{
 			instance = null;
+			CensusConfigClient.Instance = null;
 			//townTracker = null;
 		}
 

@@ -4,6 +4,7 @@ using Terraria.ModLoader.Config;
 
 namespace Census
 {
+#pragma warning disable 0649
 	class CensusConfigClient : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ClientSide;
@@ -23,4 +24,5 @@ namespace Census
 			Instance = this; // Remove after 0.11.4
 		}
 	}
+#pragma warning restore 0649
 }

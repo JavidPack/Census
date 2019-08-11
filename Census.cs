@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Terraria;
@@ -31,12 +33,20 @@ namespace Census
 		}
 	}
 
+	internal class CensusWorld : ModWorld
+	{
+		public override void Initialize() {
+			Census.calculated = false;
+		}
+	}
+
 	// TODO: sync WorldGen.prioritizedTownNPC and Main.townNPCCanSpawn[townNPCInfo.type] for MP clients.
 	// manual check button?
 	// cheat for heros mod.
 	internal class Census : Mod
 	{
 		internal static Census instance;
+		internal static bool calculated;
 
 		public override void Load()
 		{
@@ -64,7 +74,42 @@ namespace Census
 			 * 
 			 */
 			instance = this;
+			calculated = false;
 			//modTownNPCsInfos = new List<TownNPCInfo>();
+
+			IL.Terraria.Main.UpdateTime_SpawnTownNPCs += Main_UpdateTime_SpawnTownNPCs;
+		}
+
+		private void Main_UpdateTime_SpawnTownNPCs(ILContext il) {
+			var c = new ILCursor(il);
+			c.GotoNext(i => i.MatchCall(typeof(NPCLoader), nameof(NPCLoader.CanTownNPCSpawn)));
+			c.Index++;
+			c.EmitDelegate<Action>(() => {
+				Census.calculated = true;
+				if (Main.dedServ) {
+					var packet = GetPacket();
+					packet.Write((byte)CensusMessageType.CensusInfo);
+
+					packet.Write(WorldGen.prioritizedTownNPC);
+					packet.Write(Main.townNPCCanSpawn.Length);
+
+					//var compressed = BitsByte.ComposeBitsBytesChain(false, Main.townNPCCanSpawn);
+					//foreach (var bitsByte in compressed) {
+					//	packet.Write(bitsByte);
+					//}
+					for (int i = 0; i < Main.townNPCCanSpawn.Length; i += 8) {
+						var bits = new BitsByte();
+						for (int j = 0; j < 8 && j + i < Main.townNPCCanSpawn.Length; j++) {
+							bits[j] = Main.townNPCCanSpawn[j + i];
+						}
+						packet.Write(bits);
+					}
+					//for (int i = 0; i < Main.townNPCCanSpawn.Length; i++) {
+					//	packet.Write(Main.townNPCCanSpawn[i]);
+					//}
+					packet.Send();
+				}
+			});
 		}
 
 		internal List<TownNPCInfo> realTownNPCsInfos;
@@ -127,13 +172,45 @@ namespace Census
 			//	ErrorLogger.Log(string.Join(", ", realTownNPCs.Select(x => Lang.GetNPCNameValue(x))));
 		}
 
-
-
 		public override void Unload()
 		{
 			instance = null;
 			CensusConfigClient.Instance = null;
 			//townTracker = null;
+		}
+
+		public override void HandlePacket(BinaryReader reader, int whoAmI) {
+			var msgType = (CensusMessageType)reader.ReadByte();
+			switch (msgType) {
+				case CensusMessageType.CensusInfo:
+					if (Main.netMode != NetmodeID.MultiplayerClient)
+						return;
+					WorldGen.prioritizedTownNPC = reader.ReadInt32();
+					int count = reader.ReadInt32();
+					if (count != Main.townNPCCanSpawn.Length)
+						Logger.Error("Census: Somehow Main.townNPCCanSpawn.Length incorrect");
+					//var bitsBytes = BitsByte.DecomposeBitsBytesChain(reader);
+					//for (int i = 0; i < bitsBytes.Length; i++) {
+					//	BitsByte bitsByte = bitsBytes[i];
+					//	for (int j = 0; j < 8 && j + i * 8 < Main.townNPCCanSpawn.Length; j++) {
+					//		Main.townNPCCanSpawn[j + i * 8] = bitsByte[j];
+					//	}
+					//}
+					for (int i = 0; i < Main.townNPCCanSpawn.Length; i += 8) {
+						BitsByte bits = reader.ReadByte();
+						for (int j = 0; j < 8 && j + i < Main.townNPCCanSpawn.Length; j++) {
+							Main.townNPCCanSpawn[j + i] = bits[j];
+						}
+					}
+					//for (int i = 0; i < Main.townNPCCanSpawn.Length; i++) {
+					//	Main.townNPCCanSpawn[i] = reader.ReadBoolean();
+					//}
+					Census.calculated = true;
+					break;
+				default:
+					Logger.Warn("Ceusus: Unknown Message type: " + msgType);
+					break;
+			}
 		}
 
 		/*
@@ -276,15 +353,7 @@ namespace Census
 						foreach (TownNPCInfo townNPCInfo in realTownNPCsInfos)
 						//foreach (var missingNPCType in realTownNPCs)
 						{
-							bool missing = true;
-							for (int j = 0; j < 200; j++)
-							{
-								if (Main.npc[j].active && Main.npc[j].type == townNPCInfo.type)
-								{
-									missing = false;
-									break;
-								}
-							}
+							bool missing = !NPC.AnyNPCs(townNPCInfo.type);
 							if (missing)
 							{
 								if (WorldGen.prioritizedTownNPC == townNPCInfo.type)
@@ -384,7 +453,8 @@ namespace Census
 								if (maxDimension > 36f)
 									scale = 36f / maxDimension;
 								Main.spriteBatch.Draw(Main.npcHeadTexture[i], new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale), new Rectangle(0, 0, Main.npcHeadTexture[i].Width, Main.npcHeadTexture[i].Height), white, 0f, new Vector2(Main.npcHeadTexture[i].Width / 2, (float)(Main.npcHeadTexture[i].Height / 2)), scale, SpriteEffects.None, 0f);
-								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontItemStack, unknown ? "?" : Main.townNPCCanSpawn[missingNPCType] ? "✓" : "X", new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale) + new Vector2(6f, 6f), unknown ? Color.Purple : Main.townNPCCanSpawn[missingNPCType] ? Color.LightGreen : Color.LightSalmon, 0f, Vector2.Zero, new Vector2(0.7f));
+
+								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontItemStack, !Census.calculated ? "?" : Main.townNPCCanSpawn[missingNPCType] ? "✓" : "X", new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale) + new Vector2(6f, 6f), !Census.calculated ? Color.MediumPurple : Main.townNPCCanSpawn[missingNPCType] ? Color.LightGreen : Color.LightSalmon, 0f, Vector2.Zero, new Vector2(0.7f));
 
 								drawCount++;
 							}
@@ -458,8 +528,9 @@ namespace Census
 		//}
 	}
 
-	//enum CensusMessageType : byte
-	//{
-	//}
+	enum CensusMessageType : byte
+	{
+		CensusInfo
+	}
 }
 

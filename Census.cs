@@ -465,13 +465,14 @@ namespace Census
 							//Main.NewText("" + Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered].Center.X);
 							var npc = Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered];
 							var headIndex = NPC.TypeToHeadIndex(npc.type); // if NPCS_LastHovered is 0, it could also be the housing query button.
-							var vector = npc.Center - Main.LocalPlayer.Center;
+							Vector2 playerCenter = Main.LocalPlayer.Center + new Vector2(0, Main.LocalPlayer.gfxOffY);
+							var vector = npc.Center - playerCenter;
 							var distance = vector.Length();
 							if (headIndex > -1 && distance > 40) {
 								var headTexture = Main.npcHeadTexture[headIndex];
 								var offset = Vector2.Normalize(vector) * Math.Min(70, distance - 20);
 								float rotation = vector.ToRotation() + (float)(3 * Math.PI / 4);
-								var drawPosition = Main.LocalPlayer.Center - Main.screenPosition + offset;
+								var drawPosition = playerCenter - Main.screenPosition + offset;
 								float fade = Math.Min(1f, (distance - 20) / 70);
 								Main.spriteBatch.Draw(Main.cursorTextures[0], drawPosition, null, CensusConfigClient.Instance.ArrowColor * fade, rotation, Main.cursorTextures[1].Size() / 2, new Vector2(1.5f), SpriteEffects.None, 0);
 

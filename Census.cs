@@ -12,6 +12,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using Terraria.UI.Gamepad;
+using Terraria.GameContent;
 
 namespace Census
 {
@@ -33,10 +34,14 @@ namespace Census
 		}
 	}
 
-	internal class CensusWorld : ModWorld
+	internal class CensusWorld : ModSystem
 	{
-		public override void Initialize() {
+		public override void OnWorldLoad() {
 			Census.calculated = false;
+		}
+
+		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
+			Census.instance.ModifyInterfaceLayers(layers);
 		}
 	}
 
@@ -90,7 +95,7 @@ namespace Census
 					var packet = GetPacket();
 					packet.Write((byte)CensusMessageType.CensusInfo);
 
-					packet.Write(WorldGen.prioritizedTownNPC);
+					packet.Write(WorldGen.prioritizedTownNPCType);
 					packet.Write(Main.townNPCCanSpawn.Length);
 
 					//var compressed = BitsByte.ComposeBitsBytesChain(false, Main.townNPCCanSpawn);
@@ -114,7 +119,6 @@ namespace Census
 
 		internal List<TownNPCInfo> realTownNPCsInfos;
 		List<TownNPCInfo> modTownNPCsInfos = new List<TownNPCInfo>();
-		//List<int> realTownNPCs; // spawnOrder, all vanilla and all modded
 		public override void PostAddRecipes()
 		{
 			// By this point, all NPC of all mods are loaded. (and setdefaults)
@@ -131,40 +135,46 @@ namespace Census
 				new TownNPCInfo(NPCID.Guide, "Always available, spawned on world generation"),
 				new TownNPCInfo(NPCID.Merchant, $"Have [i/s50:{ItemID.SilverCoin}] in your inventory"),
 				new TownNPCInfo(NPCID.Nurse, "Have more than 100 HP and for the Merchant to have arrived"),
-				new TownNPCInfo(NPCID.ArmsDealer, "Have bullets or a gun in your inventory"),
-				new TownNPCInfo(NPCID.GoblinTinkerer, "Find in the world after a goblin invasion has been defeated"),
-				new TownNPCInfo(NPCID.TaxCollector, $"In hardmode, purify tortured soul with [i:{ItemID.PurificationPowder}] in the underworld"),
-				new TownNPCInfo(NPCID.Wizard, "Find in the cavern layer in hardmode"),
-				new TownNPCInfo(NPCID.Truffle, "In hardmode, build a house in an above ground mushroom biome"),
-				new TownNPCInfo(NPCID.Dryad, "Any boss has been defeated"),
 				new TownNPCInfo(NPCID.Demolitionist, "Have an explosive in your inventory"),
-				new TownNPCInfo(NPCID.WitchDoctor, "When Queen Bee has been defeated"),
-				new TownNPCInfo(NPCID.Steampunker, "When a Mechanical boss has been defeated"),
-				new TownNPCInfo(NPCID.Mechanic, "Find in the dungeon"),
-				new TownNPCInfo(NPCID.Angler, "Find on the ocean"),
-				new TownNPCInfo(NPCID.Cyborg, "When Plantera has been defeated"),
-				new TownNPCInfo(NPCID.Pirate, "When a Pirate invasion has been defeated"),
-				new TownNPCInfo(NPCID.Clothier, "When Skeletron has been defeated"),
-				new TownNPCInfo(NPCID.Stylist, "Find in a spider nest"),
 				new TownNPCInfo(NPCID.DyeTrader, "Find dye item and either defeat boss or find strange plant"),
+				new TownNPCInfo(NPCID.Angler, "Find on the ocean"),
+				new TownNPCInfo(NPCID.BestiaryGirl, "Fill at least 10% of the bestiary"),
+				new TownNPCInfo(NPCID.Dryad, "Any boss has been defeated"),
 				new TownNPCInfo(NPCID.Painter, "Acquire 7 other townspeople"),
-				new TownNPCInfo(NPCID.PartyGirl, "Acquire 14 other townspeople"),
-				new TownNPCInfo(NPCID.SantaClaus, "When Frost Legion has been defeated, only during December 15-31"),
+				new TownNPCInfo(NPCID.Golfer, "Find in the underground desert"),
+				new TownNPCInfo(NPCID.ArmsDealer, "Have bullets or a gun in your inventory"),
 				new TownNPCInfo(NPCID.DD2Bartender, "When Eater of World or Brain of Cthulhu has been defeated, found in world"),
+				new TownNPCInfo(NPCID.Stylist, "Find in a spider nest"),
+				new TownNPCInfo(NPCID.GoblinTinkerer, "Find in the world after a goblin invasion has been defeated"),
+				new TownNPCInfo(NPCID.WitchDoctor, "When Queen Bee has been defeated"),
+				new TownNPCInfo(NPCID.Clothier, "When Skeletron has been defeated"),
+				new TownNPCInfo(NPCID.Mechanic, "Find in the dungeon"),
+				new TownNPCInfo(NPCID.PartyGirl, "Acquire 14 other townspeople"),
+				new TownNPCInfo(NPCID.Wizard, "Find in the cavern layer in hardmode"),
+				new TownNPCInfo(NPCID.TaxCollector, $"In hardmode, purify tortured soul with [i:{ItemID.PurificationPowder}] in the underworld"),
+				new TownNPCInfo(NPCID.Truffle, "In hardmode, build a house in an above ground mushroom biome"),
+				new TownNPCInfo(NPCID.Pirate, "When a Pirate invasion has been defeated"),
+				new TownNPCInfo(NPCID.Steampunker, "When a Mechanical boss has been defeated"),
+				new TownNPCInfo(NPCID.Cyborg, "When Plantera has been defeated"),
+				new TownNPCInfo(NPCID.SantaClaus, "When Frost Legion has been defeated, only during December 15-31"),
+				new TownNPCInfo(NPCID.Princess, "Have all other town npcs in the world"),
+				new TownNPCInfo(NPCID.TownCat, $"Use [i:{ItemID.LicenseCat}]"),
+				new TownNPCInfo(NPCID.TownDog, $"Use [i:{ItemID.LicenseDog}]"),
+				new TownNPCInfo(NPCID.TownBunny, $"Use [i:{ItemID.LicenseBunny}]"),
 			};
 
 			FieldInfo npcsField = typeof(NPCLoader).GetField("npcs", BindingFlags.Static | BindingFlags.NonPublic);
 			List<ModNPC> npcs = (List<ModNPC>)npcsField.GetValue(this);
 			foreach (ModNPC npc in npcs)
 			{
-				if (npc.npc.townNPC && NPC.TypeToHeadIndex(npc.npc.type) >= 0) // ignore traveling I guess.
+				if (npc.NPC.townNPC && NPC.TypeToDefaultHeadIndex(npc.NPC.type) >= 0) // ignore traveling I guess.
 				{
 					//realTownNPCs.Add(npc.npc.type);
-					var modSuppliedTownNPC = modTownNPCsInfos.FirstOrDefault(x => x.type == npc.npc.type);
+					var modSuppliedTownNPC = modTownNPCsInfos.FirstOrDefault(x => x.type == npc.NPC.type);
 					if (modSuppliedTownNPC != null)
 						realTownNPCsInfos.Add(modSuppliedTownNPC);
 					else
-						realTownNPCsInfos.Add(new TownNPCInfo(npc.npc.type, "Conditions unknown"));
+						realTownNPCsInfos.Add(new TownNPCInfo(npc.NPC.type, "Conditions unknown"));
 				}
 			}
 
@@ -172,8 +182,7 @@ namespace Census
 			//	ErrorLogger.Log(string.Join(", ", realTownNPCs.Select(x => Lang.GetNPCNameValue(x))));
 		}
 
-		public override void Unload()
-		{
+		public override void Unload() {
 			instance = null;
 			CensusConfigClient.Instance = null;
 			//townTracker = null;
@@ -185,7 +194,7 @@ namespace Census
 				case CensusMessageType.CensusInfo:
 					if (Main.netMode != NetmodeID.MultiplayerClient)
 						return;
-					WorldGen.prioritizedTownNPC = reader.ReadInt32();
+					WorldGen.prioritizedTownNPCType = reader.ReadInt32();
 					int count = reader.ReadInt32();
 					if (count != Main.townNPCCanSpawn.Length)
 						Logger.Error("Census: Somehow Main.townNPCCanSpawn.Length incorrect");
@@ -249,34 +258,26 @@ namespace Census
 		}
 		*/
 
-
 		string hoverText = "";
-		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-		{
-			if (Main.playerInventory && Main.EquipPage == 1)
-			{
+		public void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
+			if (Main.playerInventory && Main.EquipPage == 1) {
 				int InventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
-				if (InventoryIndex != -1)
-				{
+				if (InventoryIndex != -1) {
 					layers.Insert(InventoryIndex + 1, new LegacyGameInterfaceLayer(
 					"Census: Census Hover",
-					delegate
-					{
-						if (!string.IsNullOrEmpty(hoverText))
-						{
-							if (/*text != "" && */Main.mouseItem.type == 0)
-							{
+					delegate {
+						if (!string.IsNullOrEmpty(hoverText)) {
+							if (/*text != "" && */Main.mouseItem.type == ItemID.None) {
 								//Main.instance.MouseText(text);
 								//Main.HoverItem = new Item();
 								//Main.hoverItemName = text;
-								Vector2 vector = ChatManager.GetStringSize(Main.fontMouseText, hoverText, Vector2.One);
+								Vector2 vector = ChatManager.GetStringSize(FontAssets.MouseText.Value, hoverText, Vector2.One);
 								//ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, text, new Vector2(12f, (float)Main.screenHeight - x) - stringSize * new Vector2(0f, 0f), Microsoft.Xna.Framework.Color.White, 0f, Vector2.Zero, baseScale, -1f, y * 2f);
 
 
 								int x = Main.mouseX + 10;
 								int y = Main.mouseY + 10;
-								if (Main.ThickMouse)
-								{
+								if (Main.ThickMouse) {
 									x += 6;
 									y += 6;
 								}
@@ -285,7 +286,7 @@ namespace Census
 								if (y + vector.Y + 4f > Main.screenHeight)
 									y = (int)(Main.screenHeight - vector.Y - 4f);
 								Color baseColor = new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor);
-								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, hoverText, new Vector2(x, y), baseColor, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, hoverText, new Vector2(x, y), baseColor, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
 							}
 						}
 						return true;
@@ -295,8 +296,7 @@ namespace Census
 
 					layers.Insert(InventoryIndex, new LegacyGameInterfaceLayer(
 					"Census: Census",
-					delegate
-					{
+					delegate {
 						// prioritizedTownNPC and townNPCCanSpawn not always up to date. townNPCCanSpawn needs to be set after 2 min in game during day. 
 						bool unknown = false; // WorldGen.prioritizedTownNPC == 0 && Main.townNPCCanSpawn.All(x => !x);
 						int total = UILinkPointNavigator.Shortcuts.NPCS_IconsTotal + 0;
@@ -304,8 +304,7 @@ namespace Census
 						Main.inventoryScale = 0.85f;
 
 						int mH = 0;
-						if (Main.mapEnabled)
-						{
+						if (Main.mapEnabled) {
 							if (!Main.mapFullscreen && Main.mapStyle == 1)
 								mH = 256;
 							//if (Main.GameUpdateCount / 60 % 2 == 0)
@@ -350,13 +349,12 @@ namespace Census
 						//		continue;
 						//	int missingNPCType = NPC.HeadIndexToType(i);
 
-						foreach (TownNPCInfo townNPCInfo in realTownNPCsInfos)
+						foreach (TownNPCInfo townNPCInfo in Census.instance.realTownNPCsInfos)
 						//foreach (var missingNPCType in realTownNPCs)
 						{
 							bool missing = !NPC.AnyNPCs(townNPCInfo.type);
-							if (missing)
-							{
-								if (WorldGen.prioritizedTownNPC == townNPCInfo.type)
+							if (missing) {
+								if (WorldGen.prioritizedTownNPCType == townNPCInfo.type)
 									canSpawns.Insert(0, townNPCInfo);
 								else if (Main.townNPCCanSpawn[townNPCInfo.type])
 									canSpawns.Add(townNPCInfo);
@@ -385,15 +383,14 @@ namespace Census
 						//for (int i = 1; i < Main.npcHeadTexture.Length; i++)
 
 						//c#7		//foreach ((int missingNPCType, string condition) in canSpawns.Concat(cantSpawns))
-						foreach (TownNPCInfo t in canSpawns.Concat(cantSpawns))
-						{
+						foreach (TownNPCInfo t in canSpawns.Concat(cantSpawns)) {
 							int missingNPCType = t.type;
 							string condition = t.conditions;
 
 							//if (i == 21)
 							//	continue;
 
-							int i = NPC.TypeToHeadIndex(missingNPCType);
+							int i = NPC.TypeToDefaultHeadIndex(missingNPCType);
 
 							//int missingNPCType = NPC.HeadIndexToType(i);
 							//int missingNPCWhoAmI = 0;
@@ -412,26 +409,22 @@ namespace Census
 								int drawX = Main.screenWidth - 64 - 28 + colOffsetX;
 								int drawY = (int)(174 + mH + drawCount * 56 * Main.inventoryScale) + rowOffsetY;
 								Color white = new Color(100, 100, 100, 100);
-								if (drawY > Main.screenHeight - 80)
-								{
+								if (drawY > Main.screenHeight - 80) {
 									colOffsetX -= 48;
 									rowOffsetY -= drawY - (174 + mH);
 									drawX = Main.screenWidth - 64 - 28 + colOffsetX;
 									drawY = (int)(174 + mH + drawCount * 56 * Main.inventoryScale) + rowOffsetY;
 								}
-								if (Main.mouseX >= drawX && Main.mouseX <= drawX + Main.inventoryBackTexture.Width * Main.inventoryScale && Main.mouseY >= drawY && Main.mouseY <= drawY + Main.inventoryBackTexture.Height * Main.inventoryScale)
-								{
+								if (Main.mouseX >= drawX && Main.mouseX <= drawX + TextureAssets.InventoryBack.Value.Width * Main.inventoryScale && Main.mouseY >= drawY && Main.mouseY <= drawY + TextureAssets.InventoryBack.Value.Height * Main.inventoryScale) {
 									Main.mouseText = true;
 									//text = Main.npc[missingNPCWhoAmI].FullName;
 									text = Lang.GetNPCNameValue(missingNPCType);
-									if (WorldGen.prioritizedTownNPC == missingNPCType)
+									if (WorldGen.prioritizedTownNPCType == missingNPCType)
 										text += "\nNext";
-									else if (Main.townNPCCanSpawn[missingNPCType])
-									{
+									else if (Main.townNPCCanSpawn[missingNPCType]) {
 										//text += "\nOn their way!";
 									}
-									else
-									{
+									else {
 										if (unknown)
 											text += $" - Townspeople spawn during the day";
 										else
@@ -444,40 +437,40 @@ namespace Census
 								//	texture = Main.inventoryBack5Texture;
 								//if (WorldGen.prioritizedTownNPC == missingNPCType)
 								//	texture = Main.inventoryBack7Texture;
-								Texture2D texture = Main.inventoryBack7Texture;
+								Texture2D texture = TextureAssets.InventoryBack7.Value;
 								Color white2 = Main.inventoryBack;
-								Main.spriteBatch.Draw(texture, new Vector2(drawX, drawY), new Rectangle(0, 0, Main.inventoryBackTexture.Width, Main.inventoryBackTexture.Height), white2, 0f, default(Vector2), Main.inventoryScale, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(texture, new Vector2(drawX, drawY), new Rectangle(0, 0, TextureAssets.InventoryBack.Value.Width, TextureAssets.InventoryBack.Value.Height), white2, 0f, default(Vector2), Main.inventoryScale, SpriteEffects.None, 0f);
 								white = Color.White;
 								float scale = 1f;
-								float maxDimension = Math.Min(Main.npcHeadTexture[i].Width, Main.npcHeadTexture[i].Height);
+								float maxDimension = Math.Min(TextureAssets.NpcHead[i].Value.Width, TextureAssets.NpcHead[i].Value.Height);
 								if (maxDimension > 36f)
 									scale = 36f / maxDimension;
-								Main.spriteBatch.Draw(Main.npcHeadTexture[i], new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale), new Rectangle(0, 0, Main.npcHeadTexture[i].Width, Main.npcHeadTexture[i].Height), white, 0f, new Vector2(Main.npcHeadTexture[i].Width / 2, (float)(Main.npcHeadTexture[i].Height / 2)), scale, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(TextureAssets.NpcHead[i].Value, new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale), new Rectangle(0, 0, TextureAssets.NpcHead[i].Value.Width, TextureAssets.NpcHead[i].Value.Height), white, 0f, new Vector2(TextureAssets.NpcHead[i].Value.Width / 2, (float)(TextureAssets.NpcHead[i].Value.Height / 2)), scale, SpriteEffects.None, 0f);
 
-								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontItemStack, !Census.calculated ? "?" : Main.townNPCCanSpawn[missingNPCType] ? "✓" : "X", new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale) + new Vector2(6f, 6f), !Census.calculated ? Color.MediumPurple : Main.townNPCCanSpawn[missingNPCType] ? Color.LightGreen : Color.LightSalmon, 0f, Vector2.Zero, new Vector2(0.7f));
+								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.ItemStack.Value, !Census.calculated ? "?" : Main.townNPCCanSpawn[missingNPCType] ? "✓" : "X", new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale) + new Vector2(6f, 6f), !Census.calculated ? Color.MediumPurple : Main.townNPCCanSpawn[missingNPCType] ? Color.LightGreen : Color.LightSalmon, 0f, Vector2.Zero, new Vector2(0.7f));
 
 								drawCount++;
 							}
 						}
 						hoverText = text;
 
-						if(UILinkPointNavigator.Shortcuts.NPCS_LastHovered > -1 && CensusConfigClient.Instance.ShowLocatingArrow) {
+						if (UILinkPointNavigator.Shortcuts.NPCS_LastHovered > -1 && CensusConfigClient.Instance.ShowLocatingArrow) {
 							//Main.NewText("" + Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered].Center.X);
 							var npc = Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered];
-							var headIndex = NPC.TypeToHeadIndex(npc.type); // if NPCS_LastHovered is 0, it could also be the housing query button.
+							var headIndex = NPC.TypeToDefaultHeadIndex(npc.type); // if NPCS_LastHovered is 0, it could also be the housing query button.
 							Vector2 playerCenter = Main.LocalPlayer.Center + new Vector2(0, Main.LocalPlayer.gfxOffY);
 							var vector = npc.Center - playerCenter;
 							var distance = vector.Length();
 							if (headIndex > -1 && distance > 40) {
-								var headTexture = Main.npcHeadTexture[headIndex];
+								var headTexture = TextureAssets.NpcHead[headIndex].Value;
 								var offset = Vector2.Normalize(vector) * Math.Min(70, distance - 20);
 								float rotation = vector.ToRotation() + (float)(3 * Math.PI / 4);
 								var drawPosition = playerCenter - Main.screenPosition + offset;
 								float fade = Math.Min(1f, (distance - 20) / 70);
-								Main.spriteBatch.Draw(Main.cursorTextures[0], drawPosition, null, CensusConfigClient.Instance.ArrowColor * fade, rotation, Main.cursorTextures[1].Size() / 2, new Vector2(1.5f), SpriteEffects.None, 0);
+								Main.spriteBatch.Draw(TextureAssets.Cursors[0].Value, drawPosition, null, CensusConfigClient.Instance.ArrowColor * fade, rotation, TextureAssets.Cursors[1].Value.Size() / 2, new Vector2(1.5f), SpriteEffects.None, 0);
 
 								drawPosition -= Vector2.Normalize(vector) * 20;
-								
+
 								Main.spriteBatch.Draw(headTexture, drawPosition, null, Color.White * fade, 0, headTexture.Size() / 2, Vector2.One, npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
 							}
 						}

@@ -17,7 +17,7 @@ namespace Census.Commands
 
 		public override void Action(CommandCaller caller, string input, string[] args)
 		{
-			foreach (var townNPCInfo in CensusMod.instance.realTownNPCsInfos)
+			foreach (var townNPCInfo in Census.instance.realTownNPCsInfos)
 			{
 				bool present = Main.npc.Any(x=>x.active && x.type == townNPCInfo.type);
 				bool spawnable = Main.townNPCCanSpawn[townNPCInfo.type];

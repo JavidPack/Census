@@ -163,10 +163,7 @@ namespace Census
 				new TownNPCInfo(NPCID.TownBunny, $"Use [i:{ItemID.LicenseBunny}]"),
 			};
 
-			FieldInfo npcsField = typeof(NPCLoader).GetField("npcs", BindingFlags.Static | BindingFlags.NonPublic);
-			List<ModNPC> npcs = (List<ModNPC>)npcsField.GetValue(this);
-			foreach (ModNPC npc in npcs)
-			{
+			foreach (ModNPC npc in ModContent.GetContent<ModNPC>()) {
 				if (npc.NPC.townNPC && NPC.TypeToDefaultHeadIndex(npc.NPC.type) >= 0) // ignore traveling I guess.
 				{
 					//realTownNPCs.Add(npc.npc.type);

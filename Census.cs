@@ -372,8 +372,8 @@ namespace Census
 						//int startCol = total / perRow;
 
 						int perColumn = UILinkPointNavigator.Shortcuts.NPCS_IconsPerColumn;
-						int startRow = total / perColumn;
-						int startCol = total % perColumn;
+						int startRow = total % perColumn;
+						int startCol = total / perColumn;
 
 						//Main.NewText(perRow);
 						int rowOffsetY = (int)(startRow * 56 * Main.inventoryScale);

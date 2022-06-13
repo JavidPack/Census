@@ -366,10 +366,14 @@ namespace Census
 						int drawCount = 0;
 						string text = "";
 
-						int space = Main.screenHeight - 80 - (int)(174 + mH + drawCount * 56 * Main.inventoryScale);
-						int perRow = space / (int)(56 * Main.inventoryScale) + 1;
-						int startRow = total % perRow;
-						int startCol = total / perRow;
+						//int space = Main.screenHeight - 80 - (int)(174 + mH + drawCount * 56 * Main.inventoryScale);
+						//int perRow = space / (int)(56 * Main.inventoryScale) + 1;
+						//int startRow = total % perRow;
+						//int startCol = total / perRow;
+
+						int perColumn = UILinkPointNavigator.Shortcuts.NPCS_IconsPerColumn;
+						int startRow = total / perColumn;
+						int startCol = total % perColumn;
 
 						//Main.NewText(perRow);
 						int rowOffsetY = (int)(startRow * 56 * Main.inventoryScale);
@@ -412,7 +416,7 @@ namespace Census
 									drawX = Main.screenWidth - 64 - 28 + colOffsetX;
 									drawY = (int)(174 + mH + drawCount * 56 * Main.inventoryScale) + rowOffsetY;
 								}
-								if (Main.mouseX >= drawX && Main.mouseX <= drawX + TextureAssets.InventoryBack.Value.Width * Main.inventoryScale && Main.mouseY >= drawY && Main.mouseY <= drawY + TextureAssets.InventoryBack.Value.Height * Main.inventoryScale) {
+								if (Main.mouseX >= drawX && Main.mouseX <= drawX + TextureAssets.InventoryBack.Width() * Main.inventoryScale && Main.mouseY >= drawY && Main.mouseY <= drawY + TextureAssets.InventoryBack.Height() * Main.inventoryScale) {
 									Main.mouseText = true;
 									//text = Main.npc[missingNPCWhoAmI].FullName;
 									text = Lang.GetNPCNameValue(missingNPCType);
@@ -436,13 +440,13 @@ namespace Census
 								//	texture = Main.inventoryBack7Texture;
 								Texture2D texture = TextureAssets.InventoryBack7.Value;
 								Color white2 = Main.inventoryBack;
-								Main.spriteBatch.Draw(texture, new Vector2(drawX, drawY), new Rectangle(0, 0, TextureAssets.InventoryBack.Value.Width, TextureAssets.InventoryBack.Value.Height), white2, 0f, default(Vector2), Main.inventoryScale, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(texture, new Vector2(drawX, drawY), null, white2, 0f, default(Vector2), Main.inventoryScale, SpriteEffects.None, 0f);
 								white = Color.White;
 								float scale = 1f;
-								float maxDimension = Math.Min(TextureAssets.NpcHead[i].Value.Width, TextureAssets.NpcHead[i].Value.Height);
+								float maxDimension = Math.Min(TextureAssets.NpcHead[i].Width(), TextureAssets.NpcHead[i].Height());
 								if (maxDimension > 36f)
 									scale = 36f / maxDimension;
-								Main.spriteBatch.Draw(TextureAssets.NpcHead[i].Value, new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale), new Rectangle(0, 0, TextureAssets.NpcHead[i].Value.Width, TextureAssets.NpcHead[i].Value.Height), white, 0f, new Vector2(TextureAssets.NpcHead[i].Value.Width / 2, (float)(TextureAssets.NpcHead[i].Value.Height / 2)), scale, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(TextureAssets.NpcHead[i].Value, new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale), null, white, 0f, new Vector2(TextureAssets.NpcHead[i].Width() / 2, (float)(TextureAssets.NpcHead[i].Height() / 2)), scale, SpriteEffects.None, 0f);
 
 								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.ItemStack.Value, !Census.calculated ? "?" : Main.townNPCCanSpawn[missingNPCType] ? "✓" : "X", new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale) + new Vector2(6f, 6f), !Census.calculated ? Color.MediumPurple : Main.townNPCCanSpawn[missingNPCType] ? Color.LightGreen : Color.LightSalmon, 0f, Vector2.Zero, new Vector2(0.7f));
 

@@ -366,28 +366,32 @@ namespace Census
 						int drawCount = 0;
 						string text = "";
 
-						int space = Main.screenHeight - 80 - (int)(174 + mH + drawCount * 56 * Main.inventoryScale);
-						int perRow = space / (int)(56 * Main.inventoryScale) + 1;
-						int startRow = total % perRow;
-						int startCol = total / perRow;
+						//int space = Main.screenHeight - 80 - (int)(174 + mH + drawCount * 56 * Main.inventoryScale);
+						//int perRow = space / (int)(56 * Main.inventoryScale) + 1;
+						//int startRow = total % perRow;
+						//int startCol = total / perRow;
 
 						//Main.NewText(perRow);
-						int rowOffsetY = (int)(startRow * 56 * Main.inventoryScale);
-						int colOffsetX = startCol * -48;
+						//int rowOffsetY = (int)(startRow * 56 * Main.inventoryScale);
+						//int colOffsetX = startCol * -48;
+
+						int rowOffsetY = 0;
+						int colOffsetX = 0;
 
 						//foreach (var missingNPCType in canSpawns.Concat(cantSpawns))
 						//foreach ((int missingNPCType, string condition) in realTownNPCsInfos)
 						//for (int i = 1; i < Main.npcHeadTexture.Length; i++)
 
 						//c#7		//foreach ((int missingNPCType, string condition) in canSpawns.Concat(cantSpawns))
-						foreach (TownNPCInfo t in canSpawns.Concat(cantSpawns)) {
-							int missingNPCType = t.type;
-							string condition = t.conditions;
+						var allNotSpawned = canSpawns.Concat(cantSpawns).ToList();
+						for (drawCount = 0; drawCount < total + allNotSpawned.Count; drawCount++) {
+
+						//}
+						//foreach (TownNPCInfo t in canSpawns.Concat(cantSpawns)) {
 
 							//if (i == 21)
 							//	continue;
 
-							int i = NPC.TypeToDefaultHeadIndex(missingNPCType);
 
 							//int missingNPCType = NPC.HeadIndexToType(i);
 							//int missingNPCWhoAmI = 0;
@@ -412,6 +416,13 @@ namespace Census
 									drawX = Main.screenWidth - 64 - 28 + colOffsetX;
 									drawY = (int)(174 + mH + drawCount * 56 * Main.inventoryScale) + rowOffsetY;
 								}
+								if (drawCount < total)
+									continue;
+
+								TownNPCInfo t = allNotSpawned[drawCount - total];
+								int missingNPCType = t.type;
+								string condition = t.conditions;
+								int i = NPC.TypeToDefaultHeadIndex(missingNPCType);
 								if (Main.mouseX >= drawX && Main.mouseX <= drawX + TextureAssets.InventoryBack.Value.Width * Main.inventoryScale && Main.mouseY >= drawY && Main.mouseY <= drawY + TextureAssets.InventoryBack.Value.Height * Main.inventoryScale) {
 									Main.mouseText = true;
 									//text = Main.npc[missingNPCWhoAmI].FullName;
@@ -446,7 +457,7 @@ namespace Census
 
 								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.ItemStack.Value, !Census.calculated ? "?" : Main.townNPCCanSpawn[missingNPCType] ? "✓" : "X", new Vector2(drawX + 26f * Main.inventoryScale, drawY + 26f * Main.inventoryScale) + new Vector2(6f, 6f), !Census.calculated ? Color.MediumPurple : Main.townNPCCanSpawn[missingNPCType] ? Color.LightGreen : Color.LightSalmon, 0f, Vector2.Zero, new Vector2(0.7f));
 
-								drawCount++;
+								//drawCount++;
 							}
 						}
 						hoverText = text;

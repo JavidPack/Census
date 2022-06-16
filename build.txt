@@ -1,5 +1,5 @@
 ﻿author = jopojelly
-version = 0.4
+version = 0.4.1
 displayName = Census - Town NPC Checklist
 homepage = https://forums.terraria.org/index.php?threads/census-town-npc-checklist.74786/
 hideCode = false

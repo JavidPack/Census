@@ -462,6 +462,14 @@ namespace Census
 						}
 						hoverText = text;
 
+						Main.inventoryScale = oldInventoryScale;
+						return true;
+					},
+					InterfaceScaleType.UI));
+
+					layers.Insert(InventoryIndex, new LegacyGameInterfaceLayer(
+					"Census: Census Arrows",
+					delegate {
 						if (UILinkPointNavigator.Shortcuts.NPCS_LastHovered > -1 && CensusConfigClient.Instance.ShowLocatingArrow) {
 							//Main.NewText("" + Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered].Center.X);
 							var npc = Main.npc[UILinkPointNavigator.Shortcuts.NPCS_LastHovered];
@@ -482,12 +490,9 @@ namespace Census
 								Main.spriteBatch.Draw(headTexture, drawPosition, null, Color.White * fade, 0, headTexture.Size() / 2, Vector2.One, npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
 							}
 						}
-
-						Main.inventoryScale = oldInventoryScale;
 						return true;
 					},
-					InterfaceScaleType.UI)
-				);
+					InterfaceScaleType.Game));
 				}
 			}
 		}

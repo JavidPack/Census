@@ -433,11 +433,13 @@ namespace Census
 										//text += "\nOn their way!";
 									}
 									else {
-										if (unknown)
-											text += $" - Townspeople spawn during the day";
-										else
-											text += $" - {condition}";
-										//	text += "\nNot coming" + $"\nNeeds: {condition}";
+										if (!CensusConfigClient.Instance.DisableConditionsText) {
+											if (unknown)
+												text += $" - Townspeople spawn during the day";
+											else
+												text += $" - {condition}";
+											//	text += "\nNot coming" + $"\nNeeds: {condition}";
+										}
 									}
 								}
 								//Texture2D texture = Main.inventoryBack6Texture; // 6, 5

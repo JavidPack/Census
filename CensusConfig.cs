@@ -20,6 +20,10 @@ namespace Census
 		[Label("Locating Arrow Color")]
 		public Color ArrowColor;
 
+		[Label("Disable Spawn Conditions Text")]
+		[Tooltip("Enable this to prevent the spawn condition text from showing.\nUse this if you want to see Town NPCs that could spawn but don't want to be spoiled on how to actually get them to spawn.")]
+		public bool DisableConditionsText;
+
 		public override void OnLoaded() {
 			Instance = this; // Remove after 0.11.4
 		}

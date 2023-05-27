@@ -1,0 +1,28 @@
+Configs: {
+	CensusConfigClient: {
+		DisplayName: Census Config Client
+
+		ShowLocatingArrow: {
+			Label: Show NPC Locating Arrows
+			Tooltip:
+				'''
+				Hover over an NPC in the housing menu to see which direction the NPC is.
+				Useful for finding Town NPC you lost track of.
+				'''
+		}
+
+		ArrowColor: {
+			Label: Locating Arrow Color
+			Tooltip: ""
+		}
+
+		DisableConditionsText: {
+			Label: Disable Spawn Conditions Text
+			Tooltip:
+				'''
+				Enable this to prevent the spawn condition text from showing.
+				Use this if you want to see Town NPCs that could spawn but don't want to be spoiled on how to actually get them to spawn.
+				'''
+		}
+	}
+}

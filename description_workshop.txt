@@ -1,0 +1,18 @@
+﻿Census - Town NPC Checklist modifies the housing panel to show missing townspeople. 
+
+A "✓" signifies that the conditions for spawning that npc have been fulfilled. An "X" means that conditions have not been fulfilled. A "?" means the game hasn't checked Town NPC spawn conditions yet. Hover over it to see the spawn conditions.
+
+Mods can add the conditions for their town easily. In PostSetupContent, call census.Call("TownNPCCondition", mod.NPCType("ExamplePerson"), "Create a house from ExampleBlock.");
+
+Townspeople spawn about 2 minutes after day begins, so the data shown might not be up to date until that check happens.
+
+The command "TownProgress" can be used to check available Town NPC from the server console.
+
+You can also hover over Town NPC in the housing menu to see an arrow pointing to their location. This feature can be toggled off in the config.
+
+[h1]Links[/h1]
+Source code hosted on [url=github.com/JavidPack/Census]GitHub[/url], collaboration welcome
+For questions or suggestions, come to my Discord: [url=discord.gg/w8Hcwby][img]https://discordapp.com/api/guilds/276235094622994433/widget.png?style=shield[/img][/url]
+Bug reports in the comments here will not be seen, come to Discord or Github to report issues.
+If you'd like to support my mods, I have a Patreon [url=www.patreon.com/jopojelly][img]https://i.imgur.com/xII2DwJ.png[/img][/url]
+[url=https://steamcommunity.com/profiles/76561198025715866/myworkshopfiles/?appid=1281930]Check out all my mods[/url]

@@ -1,14 +1,18 @@
-﻿Census - Town NPC Checklist modifies the housing panel to show missing townspeople. 
+﻿[h1]Overview[/h1]
+Census - Town NPC Checklist modifies the housing panel to show missing townspeople. 
 
 A "✓" signifies that the conditions for spawning that npc have been fulfilled. An "X" means that conditions have not been fulfilled. A "?" means the game hasn't checked Town NPC spawn conditions yet. Hover over it to see the spawn conditions.
-
-Mods can add the conditions for their town easily. In PostSetupContent, call census.Call("TownNPCCondition", mod.NPCType("ExamplePerson"), "Create a house from ExampleBlock.");
 
 Townspeople spawn about 2 minutes after day begins, so the data shown might not be up to date until that check happens.
 
 The command "TownProgress" can be used to check available Town NPC from the server console.
 
 You can also hover over Town NPC in the housing menu to see an arrow pointing to their location. This feature can be toggled off in the config.
+
+[h1]Mod Support[/h1]
+Mods can add the condition for their Town NPC easily. Census will add a "Census_SpawnCondition" key to localization files for each Town NPC, use that to supply the spawn condition text. 
+
+If a formatted LocalizedText needs to be supplied, call [code]Census.Call("TownNPCCondition", ModContent.NPCType<ExamplePerson>(), ModContent.GetInstance<ExamplePerson>().GetLocalization("Census_SpawnCondition").WithFormatArgs(args));[/code] during Mod.PostSetupContent.
 
 [h1]Links[/h1]
 Source code hosted on [url=github.com/JavidPack/Census]GitHub[/url], collaboration welcome

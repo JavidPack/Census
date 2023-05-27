@@ -26,3 +26,46 @@ Configs: {
 		}
 	}
 }
+
+Next: Next
+
+SpawnConditions: {
+	Unknown: Conditions unknown
+	Guide: Always available, spawned on world generation
+	Merchant: Have [i/s50:72] in your inventory
+	Nurse: Have more than 100 HP and for the Merchant to have arrived
+	Demolitionist: Have an explosive in your inventory
+	DyeTrader: Find dye item and either defeat boss or find strange plant
+	Angler: Find on the ocean
+	BestiaryGirl: Fill at least 10% of the bestiary
+	Dryad: Any boss has been defeated
+	Painter: Acquire 8 other townspeople
+	Golfer: Find in the underground desert
+	ArmsDealer: Have bullets or a gun in your inventory
+	DD2Bartender: When Eater of World or Brain of Cthulhu has been defeated, found in world
+	Stylist: Find in a spider nest
+	GoblinTinkerer: Find in the world after a goblin invasion has been defeated
+	WitchDoctor: When Queen Bee has been defeated
+	Clothier: When Skeletron has been defeated
+	Mechanic: Find in the dungeon
+	PartyGirl: Acquire 14 other townspeople
+	Wizard: Find in the cavern layer in hardmode
+	TaxCollector: In hardmode, purify tortured soul with {$ItemName.PurificationPowder} [i:66] in the underworld
+	Truffle: In hardmode, build a house in an above ground mushroom biome
+	Pirate: When a Pirate invasion has been defeated
+	Steampunker: When a Mechanical boss has been defeated
+	Cyborg: When Plantera has been defeated
+	SantaClaus: When Frost Legion has been defeated, only during December 15-31
+	Princess: Have all other town npcs in the world
+	TownCat: Use {$ItemName.LicenseCat} [i:4829], sold by Zoologist
+	TownDog: Use {$ItemName.LicenseDog} [i:4830], sold by Zoologist
+	TownBunny: Use {$ItemName.LicenseBunny} [i:4910], sold by Zoologist
+	TownSlimeBlue: When King Slime has been defeated.
+	TownSlimeGreen: When there is a naturally occurring Party.
+	TownSlimeOld: Unlock an Old Shaking Chest in the Cavern Layer with a {$ItemName.GoldenKey} [i:GoldenKey] after defeating Skeletron.
+	TownSlimePurple: Break the balloon of the Clumsy Balloon Slime in the Space Layer.
+	TownSlimeRainbow: Drop {$ItemName.GelBalloon} [i:4986] into Shimmer.
+	TownSlimeRed: Fished up during a Blood Moon.
+	TownSlimeYellow: Use {$ItemName.PurificationPowder} [i:66] on a Mystic Frog in the Jungle.
+	TownSlimeCopper: Drop a {$ItemName.CopperHelmet} [i:89] or a {$ItemName.CopperShortsword} [i:3507] on a slime.
+}

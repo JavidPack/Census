@@ -8,6 +8,7 @@ using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -19,6 +20,8 @@ namespace Census
 	{
 		internal static CensusSystem instance;
 		internal static bool calculated;
+
+		private LocalizedText Next;
 
 		public override void Load() {
 			/*
@@ -44,11 +47,21 @@ namespace Census
 			 * Order: TownNPC and then `foreach (ModNPC npc in npcs) {`
 			 * 
 			*/
+			instance = this;
 			calculated = false;
+			Next = Language.GetText(Mod.GetLocalizationKey("Next"));
 			//modTownNPCsInfos = new List<TownNPCInfo>();
 
 			Terraria.IL_Main.UpdateTime_SpawnTownNPCs += Main_UpdateTime_SpawnTownNPCs;
+			// Terraria.On_Main.UpdateTime_SpawnTownNPCs += On_Main_UpdateTime_SpawnTownNPCs;
 		}
+
+		/* For speeding up testing.
+		private void On_Main_UpdateTime_SpawnTownNPCs(On_Main.orig_UpdateTime_SpawnTownNPCs orig) {
+			orig();
+			Main.checkForSpawns += 200;
+		}
+		*/
 
 		public override void Unload() {
 			instance = null;
@@ -259,14 +272,13 @@ namespace Census
 
 								TownNPCInfo t = allNotSpawned[drawCount - total];
 								int missingNPCType = t.type;
-								string condition = t.conditions;
 								int i = NPC.TypeToDefaultHeadIndex(missingNPCType);
 								if (Main.mouseX >= drawX && Main.mouseX <= drawX + TextureAssets.InventoryBack.Value.Width * Main.inventoryScale && Main.mouseY >= drawY && Main.mouseY <= drawY + TextureAssets.InventoryBack.Value.Height * Main.inventoryScale) {
 									Main.mouseText = true;
 									//text = Main.npc[missingNPCWhoAmI].FullName;
 									text = Lang.GetNPCNameValue(missingNPCType);
 									if (WorldGen.prioritizedTownNPCType == missingNPCType)
-										text += "\nNext";
+										text += $"\n{Next.Value}";
 									else if (Main.townNPCCanSpawn[missingNPCType]) {
 										//text += "\nOn their way!";
 									}
@@ -275,7 +287,7 @@ namespace Census
 											if (unknown)
 												text += $" - Townspeople spawn during the day";
 											else
-												text += $" - {condition}";
+												text += $" - {t.conditions.Value}";
 											//	text += "\nNot coming" + $"\nNeeds: {condition}";
 										}
 									}
@@ -388,55 +400,74 @@ namespace Census
 
 			realTownNPCsInfos = new List<TownNPCInfo>()
 			{
-				new TownNPCInfo(NPCID.Guide, "Always available, spawned on world generation"),
-				new TownNPCInfo(NPCID.Merchant, $"Have [i/s50:{ItemID.SilverCoin}] in your inventory"),
-				new TownNPCInfo(NPCID.Nurse, "Have more than 100 HP and for the Merchant to have arrived"),
-				new TownNPCInfo(NPCID.Demolitionist, "Have an explosive in your inventory"),
-				new TownNPCInfo(NPCID.DyeTrader, "Find dye item and either defeat boss or find strange plant"),
-				new TownNPCInfo(NPCID.Angler, "Find on the ocean"),
-				new TownNPCInfo(NPCID.BestiaryGirl, "Fill at least 10% of the bestiary"),
-				new TownNPCInfo(NPCID.Dryad, "Any boss has been defeated"),
-				new TownNPCInfo(NPCID.Painter, "Acquire 8 other townspeople"),
-				new TownNPCInfo(NPCID.Golfer, "Find in the underground desert"),
-				new TownNPCInfo(NPCID.ArmsDealer, "Have bullets or a gun in your inventory"),
-				new TownNPCInfo(NPCID.DD2Bartender, "When Eater of World or Brain of Cthulhu has been defeated, found in world"),
-				new TownNPCInfo(NPCID.Stylist, "Find in a spider nest"),
-				new TownNPCInfo(NPCID.GoblinTinkerer, "Find in the world after a goblin invasion has been defeated"),
-				new TownNPCInfo(NPCID.WitchDoctor, "When Queen Bee has been defeated"),
-				new TownNPCInfo(NPCID.Clothier, "When Skeletron has been defeated"),
-				new TownNPCInfo(NPCID.Mechanic, "Find in the dungeon"),
-				new TownNPCInfo(NPCID.PartyGirl, "Acquire 14 other townspeople"),
-				new TownNPCInfo(NPCID.Wizard, "Find in the cavern layer in hardmode"),
-				new TownNPCInfo(NPCID.TaxCollector, $"In hardmode, purify tortured soul with [i:{ItemID.PurificationPowder}] in the underworld"),
-				new TownNPCInfo(NPCID.Truffle, "In hardmode, build a house in an above ground mushroom biome"),
-				new TownNPCInfo(NPCID.Pirate, "When a Pirate invasion has been defeated"),
-				new TownNPCInfo(NPCID.Steampunker, "When a Mechanical boss has been defeated"),
-				new TownNPCInfo(NPCID.Cyborg, "When Plantera has been defeated"),
-				new TownNPCInfo(NPCID.SantaClaus, "When Frost Legion has been defeated, only during December 15-31"),
-				new TownNPCInfo(NPCID.Princess, "Have all other town npcs in the world"),
-				new TownNPCInfo(NPCID.TownCat, $"Use [i:{ItemID.LicenseCat}], sold by Zoologist"),
-				new TownNPCInfo(NPCID.TownDog, $"Use [i:{ItemID.LicenseDog}], sold by Zoologist"),
-				new TownNPCInfo(NPCID.TownBunny, $"Use [i:{ItemID.LicenseBunny}], sold by Zoologist"),
-
-				new TownNPCInfo(NPCID.TownSlimeBlue, $"When King Slime has been defeated."),
-				new TownNPCInfo(NPCID.TownSlimeGreen, $"When there is a naturally occurring Party."),
-				new TownNPCInfo(NPCID.TownSlimeOld, $"Unlock an Old Shaking Chest in the Cavern Layer with a Golden Key after defeating Skeletron."),
-				new TownNPCInfo(NPCID.TownSlimePurple, $"Break the balloon of the Clumsy Balloon Slime in the Space Layer."),
-				new TownNPCInfo(NPCID.TownSlimeRainbow, $"Drop Sparkle Slime Balloon [i:{ItemID.GelBalloon}] into Shimmer."),
-				new TownNPCInfo(NPCID.TownSlimeRed, $"Fished up during a Blood Moon."),
-				new TownNPCInfo(NPCID.TownSlimeYellow, $"Use Purification Powder on a Mystic Frog in the Jungle."),
-				new TownNPCInfo(NPCID.TownSlimeCopper, $"Drop a Copper Helmet [i:{ItemID.CopperHelmet}] or a Copper Shortsword [i:{ItemID.CopperShortsword}] on a slime."),
+				new TownNPCInfo(NPCID.Guide),
+				new TownNPCInfo(NPCID.Merchant),
+				new TownNPCInfo(NPCID.Nurse),
+				new TownNPCInfo(NPCID.Demolitionist),
+				new TownNPCInfo(NPCID.DyeTrader),
+				new TownNPCInfo(NPCID.Angler),
+				new TownNPCInfo(NPCID.BestiaryGirl),
+				new TownNPCInfo(NPCID.Dryad),
+				new TownNPCInfo(NPCID.Painter),
+				new TownNPCInfo(NPCID.Golfer),
+				new TownNPCInfo(NPCID.ArmsDealer),
+				new TownNPCInfo(NPCID.DD2Bartender),
+				new TownNPCInfo(NPCID.Stylist),
+				new TownNPCInfo(NPCID.GoblinTinkerer),
+				new TownNPCInfo(NPCID.WitchDoctor),
+				new TownNPCInfo(NPCID.Clothier),
+				new TownNPCInfo(NPCID.Mechanic),
+				new TownNPCInfo(NPCID.PartyGirl),
+				new TownNPCInfo(NPCID.Wizard),
+				new TownNPCInfo(NPCID.TaxCollector),
+				new TownNPCInfo(NPCID.Truffle),
+				new TownNPCInfo(NPCID.Pirate),
+				new TownNPCInfo(NPCID.Steampunker),
+				new TownNPCInfo(NPCID.Cyborg),
+				new TownNPCInfo(NPCID.SantaClaus),
+				new TownNPCInfo(NPCID.Princess),
+				new TownNPCInfo(NPCID.TownCat),
+				new TownNPCInfo(NPCID.TownDog),
+				new TownNPCInfo(NPCID.TownBunny),
+				new TownNPCInfo(NPCID.TownSlimeBlue),
+				new TownNPCInfo(NPCID.TownSlimeGreen),
+				new TownNPCInfo(NPCID.TownSlimeOld),
+				new TownNPCInfo(NPCID.TownSlimePurple),
+				new TownNPCInfo(NPCID.TownSlimeRainbow),
+				new TownNPCInfo(NPCID.TownSlimeRed),
+				new TownNPCInfo(NPCID.TownSlimeYellow),
+				new TownNPCInfo(NPCID.TownSlimeCopper),
 			};
 
+			/* Used to port old code. Keep as a reference.
+			foreach (var item in realTownNPCsInfos) {
+				Language.GetOrRegister($"Mods.Census.SpawnConditions.{NPCID.Search.GetName(item.type)}", () => item.conditions);
+			}
+			*/
+
+			/* Used to detect unhandled townpc in new Terraria versions.
+			int total = 0;
+			for (int i = 0; i < NPCLoader.NPCCount; i++) {
+				var npc = ContentSamples.NpcsByNetId[i];
+				if (npc.townNPC && NPC.TypeToDefaultHeadIndex(npc.type) >= 0) {
+					total++;
+
+					if (!realTownNPCsInfos.Any(x=>x.type == npc.type)) { // && NPCID.Sets.NoTownNPCHappiness ??
+						Mod.Logger.Info($"{npc.FullName} not in census.");
+					}
+				}
+			}
+			*/
+
 			foreach (ModNPC npc in ModContent.GetContent<ModNPC>()) {
-				if (npc.NPC.townNPC && NPC.TypeToDefaultHeadIndex(npc.NPC.type) >= 0) // ignore traveling I guess.
+				if (npc.NPC.townNPC && NPC.TypeToDefaultHeadIndex(npc.NPC.type) >= 0 && !npc.TownNPCStayingHomeless) // ignore traveling I guess.
 				{
 					//realTownNPCs.Add(npc.npc.type);
 					var modSuppliedTownNPC = modTownNPCsInfos.FirstOrDefault(x => x.type == npc.NPC.type);
 					if (modSuppliedTownNPC != null)
 						realTownNPCsInfos.Add(modSuppliedTownNPC);
 					else
-						realTownNPCsInfos.Add(new TownNPCInfo(npc.NPC.type, "Conditions unknown"));
+						realTownNPCsInfos.Add(new TownNPCInfo(npc));
 				}
 			}
 
@@ -483,8 +514,12 @@ namespace Census
 				// Where should other mods call? They could call at end of Load?
 				string message = args[0] as string;
 				if (message == "TownNPCCondition") {
+					if (args.Length >= 3 && args[2] is not LocalizedText) {
+						throw new Exception($"Call Error: The 2nd parameter of TownNPCCondition is now LocalizedText and is optional. Also, localization is now automatic, keys will appear in your hjson files. This TownNPCCondition Mod.Call is only needed if using LocalizedText.WithFormatArgs");
+					}
+
 					int type = Convert.ToInt32(args[1]);
-					string condition = args[2] as string; // when are lang files ready?
+					LocalizedText condition = args[2] as LocalizedText; // when are lang files ready?
 					modTownNPCsInfos.Add(new TownNPCInfo(type, condition));
 					return "Success";
 				}

@@ -24,6 +24,17 @@ Configs: {
 				Use this if you want to see Town NPCs that could spawn but don't want to be spoiled on how to actually get them to spawn.
 				'''
 		}
+
+		Headers.DeveloperOptions: "[c/ff0000:Developer Options]"
+
+		DisableAutoLocalization: {
+			Label: Disable Auto Localization
+			Tooltip:
+				'''
+				By default, Census will add localization keys for spawn condition text for Town NPC contained in mods being built.
+				Set to true to disable this behavior.
+				'''
+		}
 	}
 }
 

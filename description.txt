@@ -6,6 +6,6 @@
     You can also hover over Town NPC in the housing menu to see an arrow pointing to their location. This feature can be toggled off in the config.
 
 Mod Support:
-    Mods can add the condition for their Town NPC easily. Census will add a "Census_SpawnCondition" key to localization files for each Town NPC, use that to supply the spawn condition text. 
+    Mods can add the condition for their Town NPC easily. Census will add a "Census.SpawnCondition" key to localization files for each Town NPC, use that to supply the spawn condition text. 
     
-    If a formatted LocalizedText needs to be supplied, call Census.Call("TownNPCCondition", ModContent.NPCType<ExamplePerson>(), ModContent.GetInstance<ExamplePerson>().GetLocalization("Census_SpawnCondition").WithFormatArgs(args)); during Mod.PostSetupContent.
+    If a formatted LocalizedText needs to be supplied, call Census.Call("TownNPCCondition", ModContent.NPCType<ExamplePerson>(), ModContent.GetInstance<ExamplePerson>().GetLocalization("Census.SpawnCondition").WithFormatArgs(args)); during Mod.PostSetupContent.

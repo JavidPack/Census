@@ -30,8 +30,13 @@ namespace Census
 		public TownNPCInfo(ModNPC modNPC) {
 			// No localization provided, use automatic.
 			this.type = modNPC.Type;
-			// Default value is english. Code will register automatically.
-			this.conditions = modNPC.GetLocalization("Census_SpawnCondition", () => "Conditions unknown"); 
+			// Default value is english. Code will register automatically unless disabled.
+			if (!CensusConfigClient.Instance.DisableAutoLocalization) {
+				this.conditions = modNPC.GetLocalization("Census.SpawnCondition", () => "Conditions unknown");
+			}
+			else {
+				this.conditions = Language.GetText("Mods.Census.SpawnConditions.Unknown");
+			}
 		}
 
 		//public void Deconstruct(out int type, out string conditions) {

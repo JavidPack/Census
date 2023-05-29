@@ -18,6 +18,9 @@ namespace Census
 		public Color ArrowColor;
 
 		public bool DisableConditionsText;
+
+		[Header("DeveloperOptions")]
+		public bool DisableAutoLocalization;
 	}
 #pragma warning restore 0649
 }

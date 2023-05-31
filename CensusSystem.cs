@@ -514,12 +514,13 @@ namespace Census
 				// Where should other mods call? They could call at end of Load?
 				string message = args[0] as string;
 				if (message == "TownNPCCondition") {
-					if (args.Length >= 3 && args[2] is not LocalizedText) {
+					int type = Convert.ToInt32(args[1]);
+					if (args.Length >= 3 && args[2] is string conditionString) {
+						modTownNPCsInfos.Add(new TownNPCInfo(type, conditionString));
 						throw new Exception($"Call Error: The 2nd parameter of TownNPCCondition is now LocalizedText and is optional. Also, localization is now automatic, keys will appear in your hjson files. This TownNPCCondition Mod.Call is only needed if using LocalizedText.WithFormatArgs");
 					}
 
-					int type = Convert.ToInt32(args[1]);
-					LocalizedText condition = args[2] as LocalizedText; // when are lang files ready?
+					LocalizedText condition = args[2] as LocalizedText;
 					modTownNPCsInfos.Add(new TownNPCInfo(type, condition));
 					return "Success";
 				}

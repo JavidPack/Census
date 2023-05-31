@@ -27,6 +27,16 @@ namespace Census
 			}
 		}
 
+		internal TownNPCInfo(int type, string conditions) {
+			this.type = type;
+			if (!CensusConfigClient.Instance.DisableAutoLocalization) {
+				this.conditions = ModContent.GetModNPC(type).GetLocalization("Census.SpawnCondition", () => conditions);
+			}
+			else {
+				this.conditions = Language.GetText("Mods.Census.SpawnConditions.Unknown");
+			}
+		}
+
 		public TownNPCInfo(ModNPC modNPC) {
 			// No localization provided, use automatic.
 			this.type = modNPC.Type;

@@ -12,7 +12,7 @@ Configs: {
 		}
 
 		ArrowColor: {
-			Label: Определение цвета стрелки
+			Label: Настройки цвета стрелки
 			Tooltip: ""
 		}
 
@@ -31,8 +31,8 @@ Configs: {
 			Label: Отключить автоматическую локализацию
 			Tooltip:
 				'''
-				По умолчанию Census добавит ключи локализации для текста условия появления для Town NPC, содержащегося в создаваемых модах.
-				Установите значение true, чтобы отключить это поведение.
+				По умолчанию Census добавит ключи локализации для текста условия появления NPC, содержащегося в модах.
+				Установите значение ВКЛ, чтобы отключить это.
 				'''
 		}
 	}
@@ -58,7 +58,7 @@ SpawnConditions: {
 	GoblinTinkerer: Найдите в мире после победы вторжения гоблинов
 	WitchDoctor: Победите королеву пчёл
 	Clothier: Победите скелетрона
-	Mechanic: Найдите в подземелье
+	Mechanic: Найдите в данже
 	PartyGirl: У вас должно быть 14 NPC
 	Wizard: Найдите в пещере, в хардмоде
 	TaxCollector: В хардкоре очистите измученную душу с помощью {$ItemName.PurificationPowder} [i:PurificationPowder] в аду
@@ -77,6 +77,6 @@ SpawnConditions: {
 	TownSlimePurple: Разбейте воздушный шар неуклюжей воздушной слизи в космосе
 	TownSlimeRainbow: Бросьте {$ItemName.GelBalloon} [i:GelBalloon] в Шиммер
 	TownSlimeRed: Выловите во время Кровавой луны
-	TownSlimeYellow: Используйте {$Item Name.Очищающий порошок} [in:Очищающий порошок] на таинственной лягушке в джунглях
+	TownSlimeYellow: Используйте {$ItemName.PurificationPowder} [i:PurificationPowder] на мистической лягушке в джунглях
 	TownSlimeCopper: Бросьте {$ItemName.CopperHelmet} [i:CopperHelmet] или {$ItemName.CopperShortsword} [i:CopperShortsword] на слизь
 }

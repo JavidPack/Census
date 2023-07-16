@@ -75,7 +75,7 @@ SpawnConditions: {
 	TownSlimeGreen: Когда есть естественная вечеринка
 	TownSlimeOld: Разблокируйте старый трясущийся сундук на уровне пещеры с помощью {$ItemName.GoldenKey} [i:GoldenKey] после победы над Скелетроном
 	TownSlimePurple: Разбейте воздушный шар неуклюжей воздушной слизи в космосе
-	TownSlimeRainbow: Бросьте {$ItemName.GelBalloon} [i:GelBalloon] в Шиммер
+	TownSlimeRainbow: Бросьте {$ItemName.GelBalloon} [i:GelBalloon] в мерцание
 	TownSlimeRed: Выловите во время Кровавой луны
 	TownSlimeYellow: Используйте {$ItemName.PurificationPowder} [i:PurificationPowder] на мистической лягушке в джунглях
 	TownSlimeCopper: Бросьте {$ItemName.CopperHelmet} [i:CopperHelmet] или {$ItemName.CopperShortsword} [i:CopperShortsword] на слизь

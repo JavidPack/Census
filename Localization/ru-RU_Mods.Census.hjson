@@ -1,6 +1,6 @@
 Configs: {
 	CensusConfigClient: {
-		DisplayName: Клиент конфигурации переписи
+		DisplayName: Конфигурация Census
 
 		ShowLocatingArrow: {
 			Label: Показывать стрелки для определения местоположения NPC

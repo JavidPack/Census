@@ -1,82 +1,82 @@
 Configs: {
 	CensusConfigClient: {
-		// DisplayName: Census Config Client
+		DisplayName: 人口普查客户端设置
 
 		ShowLocatingArrow: {
-			// Label: Show NPC Locating Arrows
-			/* Tooltip:
+			Label: 显示NPC位置箭头
+			Tooltip:
 				'''
-				Hover over an NPC in the housing menu to see which direction the NPC is.
-				Useful for finding Town NPC you lost track of.
-				''' */
+				将鼠标悬停在房屋菜单中的NPC头像上，查看NPC的方向。
+				对于找到您忘记的城镇NPC很有用。
+				'''
 		}
 
 		ArrowColor: {
-			// Label: Locating Arrow Color
-			// Tooltip: ""
+			Label: 位置箭头颜色
+			Tooltip: ""
 		}
 
 		DisableConditionsText: {
-			// Label: Disable Spawn Conditions Text
-			/* Tooltip:
+			Label: 禁用生成条件文本
+			Tooltip:
 				'''
-				Enable this to prevent the spawn condition text from showing.
-				Use this if you want to see Town NPCs that could spawn but don't want to be spoiled on how to actually get them to spawn.
-				''' */
+				启用此选项可隐藏生成条件文本。
+				如果你想看到城镇NPC可以生成但又不想知道如何让它们生成，请使用它。
+				'''
 		}
 
-		// Headers.DeveloperOptions: "[c/ff0000:Developer Options]"
+		Headers.DeveloperOptions: "[c/ff0000:开发人员选项]"
 
 		DisableAutoLocalization: {
-			// Label: Disable Auto Localization
-			/* Tooltip:
+			Label: 禁用自动本地化
+			Tooltip:
 				'''
-				By default, Census will add localization keys for spawn condition text for Town NPC contained in mods being built.
-				Set to true to disable this behavior.
-				''' */
+				默认情况下，人口普查将为正在创建的模组中包含的城镇NPC的生成条件文本添加本地化键。
+				设置为开以禁用此行为。
+				'''
 		}
 	}
 }
 
-// Next: Next
+Next: 文本
 
 SpawnConditions: {
-	// Unknown: Conditions unknown
-	// Guide: Always available, spawned on world generation
-	// Merchant: Have [i/s50:SilverCoin] in your inventory
-	// Nurse: Have more than 100 HP and for the Merchant to have arrived
-	// Demolitionist: Have an explosive in your inventory
-	// DyeTrader: Find dye item and either defeat boss or find strange plant
-	// Angler: Find on the ocean
-	// BestiaryGirl: Fill at least 10% of the bestiary
-	// Dryad: Any boss has been defeated
-	// Painter: Acquire 8 other townspeople
-	// Golfer: Find in the underground desert
-	// ArmsDealer: Have bullets or a gun in your inventory
-	// DD2Bartender: When Eater of World or Brain of Cthulhu has been defeated, found in world
-	// Stylist: Find in a spider nest
-	// GoblinTinkerer: Find in the world after a goblin invasion has been defeated
-	// WitchDoctor: When Queen Bee has been defeated
-	// Clothier: When Skeletron has been defeated
-	// Mechanic: Find in the dungeon
-	// PartyGirl: Acquire 14 other townspeople
-	// Wizard: Find in the cavern layer in hardmode
-	// TaxCollector: In hardmode, purify tortured soul with {$ItemName.PurificationPowder} [i:PurificationPowder] in the underworld
-	// Truffle: In hardmode, build a house in an above ground mushroom biome
-	// Pirate: When a Pirate invasion has been defeated
-	// Steampunker: When a Mechanical boss has been defeated
-	// Cyborg: When Plantera has been defeated
-	// SantaClaus: When Frost Legion has been defeated, only during December 15-31
-	// Princess: Have all other town npcs in the world
-	// TownCat: Use {$ItemName.LicenseCat} [i:LicenseCat], sold by Zoologist
-	// TownDog: Use {$ItemName.LicenseDog} [i:LicenseDog], sold by Zoologist
-	// TownBunny: Use {$ItemName.LicenseBunny} [i:LicenseBunny], sold by Zoologist
-	// TownSlimeBlue: When King Slime has been defeated.
-	// TownSlimeGreen: When there is a naturally occurring Party.
-	// TownSlimeOld: Unlock an Old Shaking Chest in the Cavern Layer with a {$ItemName.GoldenKey} [i:GoldenKey] after defeating Skeletron.
-	// TownSlimePurple: Break the balloon of the Clumsy Balloon Slime in the Space Layer.
-	// TownSlimeRainbow: Drop {$ItemName.GelBalloon} [i:GelBalloon] into Shimmer.
-	// TownSlimeRed: Fished up during a Blood Moon.
-	// TownSlimeYellow: Use {$ItemName.PurificationPowder} [i:PurificationPowder] on a Mystic Frog in the Jungle.
-	// TownSlimeCopper: Drop a {$ItemName.CopperHelmet} [i:CopperHelmet] or a {$ItemName.CopperShortsword} [i:CopperShortsword] on a slime.
+	Unknown: 未知条件。
+	Guide: 开启新世界时总是已经存在。
+	Merchant: 所有玩家物品栏中加起来有超过[i/s50:SilverCoin]。
+	Nurse: 有玩家拥有超过100的生命值且商人在。
+	Demolitionist: 玩家的物品栏中有爆炸物且商人在。
+	DyeTrader: 玩家在物品栏中有染料物品或任何用于制作染料的物品.
+	Angler: 在海洋生物群落中找到他并与其对话。
+	BestiaryGirl: 怪物图鉴至少已经填充了10%（54 个条目）。
+	Dryad: 克苏鲁之眼、世界吞噬怪/克苏鲁之脑、或骷髅王已被打败。
+	Painter: 世界中有另外8个城镇NPC。
+	Golfer: 在地下沙漠中找到他并与之交谈。
+	ArmsDealer: 有玩家的物品栏中有子弹或发射子弹的枪。
+	DD2Bartender: 在打败了世界吞噬怪或克苏鲁之脑后找到他并与之交谈。
+	Stylist: 在蜘蛛窝中找到她并与其对话。
+	GoblinTinkerer: 打败哥布林入侵后在洞穴层找到他并与之交谈。
+	WitchDoctor: 蜂王已被打败。
+	Clothier: 骷髅王已被打败。
+	Mechanic: 在地牢中找到她并与其对话
+	PartyGirl: 世界中已经有14个其他城镇NPC后有1/40几率生成。
+	Wizard: 在洞穴层找到他并与其对话（困难模式）。
+	TaxCollector: 在地狱用{$ItemName.PurificationPowder}[i:PurificationPowder]转化一个痛苦亡魂（困难模式）。
+	Truffle: 于困难模式期间在地上的发光蘑菇生物群落中有可用房屋。
+	Pirate: 已打败海盗入侵。
+	Steampunker: 已有机械Boss被打败。
+	Cyborg: 世纪之花已被打败。
+	SantaClaus: 雪人军团已被打败且现在是圣诞节。
+	Princess: 世界中已经有了所有其他城镇NPC（除了城镇宠物和圣诞老人）。
+	TownCat: 使用 {$ItemName.LicenseCat}[i:LicenseCat]，由动物学家出售。
+	TownDog: 使用 {$ItemName.LicenseDog}[i:LicenseDog]，由动物学家出售。
+	TownBunny: 使用 {$ItemName.LicenseBunny}[i:LicenseBunny]，由动物学家出售。
+	TownSlimeBlue: 当史莱姆王被打败时。
+	TownSlimeGreen: 有一个天然的派对时。
+	TownSlimeOld: 击败骷髅王后，用{$ItemName.GoldenKey}[i:GoldenKey]解锁洞穴层中的老旧摇摇箱。
+	TownSlimePurple: 打破太空层中的笨拙气球史莱姆的气球。
+	TownSlimeRainbow: 把{$ItemName.GelBalloon}[i:GelBalloon]扔进微光。
+	TownSlimeRed: 在血月期间钓鱼。
+	TownSlimeYellow: 使用{$ItemName.PurificationPowder}[i:PurificationPowder]转化神秘青蛙。
+	TownSlimeCopper: 将{$ItemName.CopperHelmet}[i:CopperHelmet]和一个{$ItemName.CopperShortsword}[i:CopperShortsword]扔给史莱姆。
 }

@@ -49,7 +49,11 @@ SpawnConditions: {
 	// DyeTrader: Find dye item and either defeat boss or find strange plant
 	// Angler: Find on the ocean
 	// BestiaryGirl: Fill at least 10% of the bestiary
-	// Dryad: Any boss has been defeated
+	/* Dryad:
+		'''
+		The Eye of Cthulhu, Eater of Worlds,
+		Brain of Cthulhu, or Skeletron has been defeated
+		''' */
 	// Painter: Acquire 8 other townspeople
 	// Golfer: Find in the underground desert
 	// ArmsDealer: Have bullets or a gun in your inventory

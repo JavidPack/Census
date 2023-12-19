@@ -14,6 +14,10 @@ namespace Census
 
 		// string:"TownNPCCondition" - int:npcid - string:condition
 		public override object Call(params object[] args) {
+			if(CensusSystem.instance == null) {
+				Logger.Error("Call was called before CensusSystem class loaded. Make sure to only use Call during or after Mod.PostSetupContent.");
+				return "Failure";
+			}
 			return CensusSystem.instance.Call(args);
 		}
 

@@ -3,7 +3,7 @@ de-DE, 0/48, 0%, missing 48
 it-IT, 0/48, 0%, missing 48
 fr-FR, 0/48, 0%, missing 48
 es-ES, 0/48, 0%, missing 48
-ru-RU, 0/48, 0%, missing 48
+ru-RU, 48/48, 100%, missing 0
 zh-Hans, 48/48, 100%, missing 0
 pt-BR, 0/48, 0%, missing 48
 pl-PL, 0/48, 0%, missing 48

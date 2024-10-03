@@ -1,86 +1,95 @@
 Configs: {
 	CensusConfigClient: {
-		// DisplayName: Census Config Client
+		DisplayName: Клиентские настройки Census
 
 		ShowLocatingArrow: {
-			// Label: Show NPC Locating Arrows
-			/* Tooltip:
+			Label: Показывать стрелку-указатель для НИПов
+			Tooltip:
 				'''
-				Hover over an NPC in the housing menu to see which direction the NPC is.
-				Useful for finding Town NPC you lost track of.
-				''' */
+				При наведении на иконку заселившегося в мире НИПа в меню заселения, 
+				возле игрока появится стрелка, указывающая на его местоположение
+				Пригодиться, чтобы находить НИПов, которых вы не смогли найти с помощью карты
+				'''
 		}
 
 		ArrowColor: {
-			// Label: Locating Arrow Color
-			// Tooltip: ""
+			Label: Цвет стрелки-указателя для НИПов
+			Tooltip: ""
 		}
 
 		DisableConditionsText: {
-			// Label: Disable Spawn Conditions Text
-			/* Tooltip:
-				'''
-				Enable this to prevent the spawn condition text from showing.
-				Use this if you want to see Town NPCs that could spawn but don't want to be spoiled on how to actually get them to spawn.
-				''' */
+			Label: Отключить подсказки с условиями заселения
+			Tooltip: При наведении на иконку отсутствующего в мире НИПа, отображаться будет только его имя без текста с условиями его появления
 		}
 
-		// Headers.DeveloperOptions: "[c/ff0000:Developer Options]"
+		Headers.DeveloperOptions: "[c/ff0000:Настройки разработчика]"
 
 		DisableAutoLocalization: {
-			// Label: Disable Auto Localization
-			/* Tooltip:
+			Label: Отключить автолокализацию 
+			Tooltip:
 				'''
-				By default, Census will add localization keys for spawn condition text for Town NPC contained in mods being built.
-				Set to true to disable this behavior.
-				''' */
+				Census автоматически переводит непереведённые условия заселения НИПов из некоторых модов
+				Включите эту настройку, чтобы отключить автоматический перевод
+				'''
 		}
 	}
 }
 
-// Next: Next
+Next: Следующий
 
 SpawnConditions: {
-	// Unknown: Conditions unknown
-	// Guide: Always available, spawned on world generation
-	// Merchant: Have [i/s50:SilverCoin] in your inventory
-	// Nurse: Have more than 100 HP and for the Merchant to have arrived
-	// Demolitionist: Have an explosive in your inventory
-	// DyeTrader: Find dye item and either defeat boss or find strange plant
-	// Angler: Find on the ocean
-	// BestiaryGirl: Fill at least 10% of the bestiary
-	/* Dryad:
+	Unknown: Условия заселения неизвестны
+	Guide: Условий нет, можно найти неподалёку от точки возрождения сразу же после создания мира
+	Merchant: Необходимо наличие [i/s50:SilverCoin] в инвентаре
+	Nurse: Необходимо иметь более 100 ед. максимального здоровья и заселившегося в мире торговца
+	Demolitionist: Необходимо наличие любой взрывчатки в инвентаре и заселившийся в мире торговец
+	DyeTrader: 
 		'''
-		The Eye of Cthulhu, Eater of Worlds,
-		Brain of Cthulhu, or Skeletron has been defeated
-		''' */
-	// Painter: Acquire 8 other townspeople
-	// Golfer: Find in the underground desert
-	// ArmsDealer: Have bullets or a gun in your inventory
-	// DD2Bartender: When Eater of World or Brain of Cthulhu has been defeated, found in world
-	// Stylist: Find in a spider nest
-	// GoblinTinkerer: Find in the world after a goblin invasion has been defeated
-	// WitchDoctor: When Queen Bee has been defeated
-	// Clothier: When Skeletron has been defeated
-	// Mechanic: Find in the dungeon
-	// PartyGirl: Acquire 14 other townspeople
-	// Wizard: Find in the cavern layer in hardmode
-	// TaxCollector: In hardmode, purify tortured soul with {$ItemName.PurificationPowder} [i:PurificationPowder] in the underworld
-	// Truffle: In hardmode, build a house in an above ground mushroom biome
-	// Pirate: When a Pirate invasion has been defeated
-	// Steampunker: When a Mechanical boss has been defeated
-	// Cyborg: When Plantera has been defeated
-	// SantaClaus: When Frost Legion has been defeated, only during December 15-31
-	// Princess: Have all other town npcs in the world
-	// TownCat: Use {$ItemName.LicenseCat} [i:LicenseCat], sold by Zoologist
-	// TownDog: Use {$ItemName.LicenseDog} [i:LicenseDog], sold by Zoologist
-	// TownBunny: Use {$ItemName.LicenseBunny} [i:LicenseBunny], sold by Zoologist
-	// TownSlimeBlue: When King Slime has been defeated.
-	// TownSlimeGreen: When there is a naturally occurring Party.
-	// TownSlimeOld: Unlock an Old Shaking Chest in the Cavern Layer with a {$ItemName.GoldenKey} [i:GoldenKey] after defeating Skeletron.
-	// TownSlimePurple: Break the balloon of the Clumsy Balloon Slime in the Space Layer.
-	// TownSlimeRainbow: Drop {$ItemName.GelBalloon} [i:GelBalloon] into Shimmer.
-	// TownSlimeRed: Fished up during a Blood Moon.
-	// TownSlimeYellow: Use {$ItemName.PurificationPowder} [i:PurificationPowder] on a Mystic Frog in the Jungle.
-	// TownSlimeCopper: Drop a {$ItemName.CopperHelmet} [i:CopperHelmet] or a {$ItemName.CopperShortsword} [i:CopperShortsword] on a slime.
+		Необходимо наличие красителя, ингредиента для красителя
+ 		или странного растения в инвентаре и минимум 4 заселившихся в мире НИПов
+		'''
+	Angler: Можно найти в океане
+	BestiaryGirl: Необходимо открыть бестиарий минимум на 10%
+	Dryad: Необходимо победить Глаз Ктулху, Пожирателя миров, Мозг Ктулху или Скелетрона
+	Painter: Необходимо наличие минимум 8 заселившихся в мире НИПов
+	Golfer: Можно найти в подземной пустыне
+	ArmsDealer: Необходимо наличие любого огнестрельного оружия или боеприпасов к нему в инвентаре
+	DD2Bartender: Можно найти в мире после победы над Пожирателем миров или Мозгом Ктулху
+	Stylist: Можно найти в паучьем гнезде
+	GoblinTinkerer: Можно найти в пещерах после победы над Армией гоблинов
+	WitchDoctor: Необходимо победить Королеву пчёл
+	Clothier: Необходимо победить Скелетрона
+	Mechanic: Можно найти в темнице после победы над Скелетроном
+	PartyGirl: Необходимо наличие минимум 14 заселившихся в мире НИПов
+	Wizard: Можно найти в пещерах после победы над Стеной плоти
+	TaxCollector:  
+		'''
+		Необходимо осыпать [i:PurificationPowder] очищающим порошком 
+		измученную душу, появляющуюся в преисподней после победы над Стеной плоти
+		'''
+	Truffle: Необходимо иметь свободное жильё в наземном биоме светящихся грибов и победить Стену плоти
+	Pirate: Необходимо победить Пиратское нашествие
+	Steampunker: Необходимо победить любого механического босса
+	Cyborg: Необходимо победить Плантеру
+	SantaClaus: Необходимо сезонное событие Рождества (15-31 дек.) и победить Морозный легион
+	Princess: 
+		'''
+		Необходимо наличие всех остальных заселившихся в мире ванильных НИПов
+		 (кроме Санта-Клауса и НИПов, которые не могут заселиться)
+		'''
+	TownCat: Необходимо использовать [i:LicenseCat] разрешение на кошку, купить которое можно у зоолога
+	TownDog: Необходимо использовать [i:LicenseDog] разрешение на собаку, купить которое можно у зоолога
+	TownBunny: Необходимо использовать [i:LicenseBunny] разрешение на кролика, купить которое можно у зоолога
+	TownSlimeBlue: Необходимо победить Короля Слизней
+	TownSlimeGreen: Необходимо событие Вечеринки
+	TownSlimeOld: 
+		'''
+		Необходимо открыть [i:GoldenKey] золотым ключом 
+		старый трясущийся сундук, появляющийся в пещерах после победы над Скелетроном
+		'''
+	TownSlimePurple: Необходимо лопнуть шарик неуклюжего слизня на шарике, появляющегося в космсое
+	TownSlimeRainbow: Необходимо бросить [i:GelBalloon] блестящий слизевой шарик в мерцание
+	TownSlimeRed: Можно выловить удочкой во время кровавой луны
+	TownSlimeYellow: Необходимо осыпать [i:PurificationPowder] очищающим порошком таинственную лягушку, появляющуюся в джунглях
+	TownSlimeCopper: Необходимо бросить [i:CopperHelmet] медный шлем или [i:CopperShortsword] медный клинок в любого слизня
 }

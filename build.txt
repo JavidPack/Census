@@ -5,4 +5,4 @@ homepage = https://forums.terraria.org/index.php?threads/census-town-npc-checkli
 hideCode = false
 hideResources = false
 includeSource = true
-buildIgnore = ignore\*,
+buildIgnore = ignore\*, Publicity\*

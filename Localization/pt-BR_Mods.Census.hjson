@@ -1,85 +1,85 @@
 Configs: {
 	CensusConfigClient: {
-		// DisplayName: Configuração do Client - Census
+		DisplayName: Configuração do Client - Census
 
 		ShowLocatingArrow: {
-			// Label: Mostrar Setas de Localização dos NPCs
-			/* Tooltip:
+			Label: Mostrar Setas de Localização dos NPCs
+			Tooltip:
 				'''
 				Passe o mouse sobre um NPC no menu de Alojamento para ver em qual direção ele está.
 				Útil para encontrar um NPC da cidade que você perdeu de vista.
-				''' */
+				'''
 		}
 
 		ArrowColor: {
-			// Label: Cor da Seta de Localização
-			// Tooltip: ""
+			Label: Cor da Seta de Localização
+			Tooltip: ""
 		}
 
 		DisableConditionsText: {
-			// Label: Desativar Texto de Condições de Aparição
-			/* Tooltip:
+			Label: Desativar Texto de Condições de Aparição
+			Tooltip:
 				'''
 				Ative esta opção para impedir que o texto das condições de aparição seja exibido.
 				Use isso se quiser ver os NPCs da cidade que podem aparecer, mas não quiser spoilers sobre como realmente fazê-los aparecer.
-				''' */
+				'''
 		}
 
-		// Headers.DeveloperOptions: "[c/ff0000:Opções de Desenvolvedor]"
+		Headers.DeveloperOptions: "[c/ff0000:Opções de Desenvolvedor]"
 
 		DisableAutoLocalization: {
-			// Label: Desativar Localização Automática
-			/* Tooltip:
+			Label: Desativar Localização Automática
+			Tooltip:
 				'''
 				Por padrão, Census adicionará chaves de localização para o texto das condições de aparição de NPCs da cidade contidos em mods em desenvolvimento.
 				Defina como verdadeiro para desativar esse comportamento.
-				''' */
+				'''
 		}
 	}
 }
 
-// Next: Próximo
+Next: Próximo
 
 SpawnConditions: {
-	// Unknown: Condições desconhecidas
-	// Guide: Sempre disponível, aparece na geração do mundo
-	// Merchant: Tenha [i/s50:SilverCoin] no seu inventário
-	// Nurse: Tenha mais de 100 de HP e o Comerciante tenha chegado
-	// Demolitionist: Tenha um explosivo no seu inventário
-	// DyeTrader: Tenha uma tinta no inventário ou ache uma Planta Estranha ou derrote um Chefe
-	// Angler: Encontrado no Oceano
-	// BestiaryGirl: Complete pelo menos 10% do bestiário
-	/* Dryad:
+	Unknown: Condições desconhecidas
+	Guide: Sempre disponível, aparece na geração do mundo
+	Merchant: Tenha [i/s50:SilverCoin] no seu inventário
+	Nurse: Tenha mais de 100 de HP e o Comerciante tenha chegado
+	Demolitionist: Tenha um explosivo no seu inventário
+	DyeTrader: Tenha uma tinta no inventário ou ache uma Planta Estranha ou derrote um Chefe
+	Angler: Encontrado no Oceano
+	BestiaryGirl: Complete pelo menos 10% do bestiário
+	Dryad:
 		'''
 		Olho de Cthulhu, o Devorador de Mundos, o Cérebro de Cthulhu ou o Esqueletron derrotados
-		''' */
-	// Painter: 8 outros NPCs de cidade foram adquiridos
-	// Golfer: Encontrado no Deserto Subterrâneo
-	// ArmsDealer: Tenha munição ou uma arma no inventário
-	// DD2Bartender: Encontrado após o Devorador de Mundos ou Cérebro de Cthulhu for derrotado.
-	// Stylist: Encontrada em uma Caverna de Aranhas.
-	// GoblinTinkerer: Encontrado na camada de caverna, depois de uma Invasão Goblin ter sido derrotada.
-	// WitchDoctor: A Abelha Rainha foi derrotada
-	// Clothier: Skeletron foi derrotado
-	// Mechanic: Encontrada no Calabouço
-	// PartyGirl: 14 outros NPCs de cidade foram adquiridos
-	// Wizard: Encontrado na camada de Caverna no Modo Difícil
-	// TaxCollector: No Modo Difícil, Uma Alma Torturada é transformada com {$ItemName.PurificationPowder} [i:PurificationPowder] no Submundo
-	// Truffle: Uma casa está disponível em um Bioma de Cogumelos Brilhantes acima do solo durante o Modo Difícil
-	// Pirate: 	Uma Invasão Pirata foi derrotada
-	// Steampunker: Um chefe mecânico foi derrotado
-	// Cyborg: 	Plantera foi derrotada
-	// SantaClaus: A Legião Congelada foi derrotada e é Natal
-	// Princess: Todos NPCs adquiridos
-	// TownCat: Use {$ItemName.LicenseCat} [i:LicenseCat], vendido pela Zoologista
-	// TownDog: Use {$ItemName.LicenseDog} [i:LicenseDog], vendido pela Zoologista
-	// TownBunny: Use {$ItemName.LicenseBunny} [i:LicenseBunny], vendido pela Zoologista
-	// TownSlimeBlue: Geleia Rei foi derrotado
-	// TownSlimeGreen: Quando há uma festa acontecendo naturalmente
-	// TownSlimeOld: Desbloqueie um Báu Antigo na camada de Caverna com uma {$ItemName.GoldenKey} [i:GoldenKey] depois de derrotar o Esqueletron
-	// TownSlimePurple: Estoure o balão da Geleia Balão Desastrada na Camada do Espaço.
-	// TownSlimeRainbow: Jogue {$ItemName.GelBalloon} [i:GelBalloon] dentro do Shimmer.
-	// TownSlimeRed: Pescado durante uma Lua de Sangue
-	// TownSlimeYellow: Use {$ItemName.PurificationPowder} [i:PurificationPowder] em um Sapo Místico na Selva
-	// TownSlimeCopper: Jogue um {$ItemName.CopperHelmet} [i:CopperHelmet] ou a {$ItemName.CopperShortsword} [i:CopperShortsword] numa Geleia
+		'''
+	Painter: 8 outros NPCs de cidade foram adquiridos
+	Golfer: Encontrado no Deserto Subterrâneo
+	ArmsDealer: Tenha munição ou uma arma no inventário
+	DD2Bartender: Encontrado após o Devorador de Mundos ou Cérebro de Cthulhu for derrotado.
+	Stylist: Encontrada em uma Caverna de Aranhas.
+	GoblinTinkerer: Encontrado na camada de caverna, depois de uma Invasão Goblin ter sido derrotada.
+	WitchDoctor: A Abelha Rainha foi derrotada
+	Clothier: Skeletron foi derrotado
+	Mechanic: Encontrada no Calabouço
+	PartyGirl: 14 outros NPCs de cidade foram adquiridos
+	Wizard: Encontrado na camada de Caverna no Modo Difícil
+	TaxCollector: No Modo Difícil, Uma Alma Torturada é transformada com {$ItemName.PurificationPowder} [i:PurificationPowder] no Submundo
+	Truffle: Uma casa está disponível em um Bioma de Cogumelos Brilhantes acima do solo durante o Modo Difícil
+	Pirate: 	Uma Invasão Pirata foi derrotada
+	Steampunker: Um chefe mecânico foi derrotado
+	Cyborg: 	Plantera foi derrotada
+	SantaClaus: A Legião Congelada foi derrotada e é Natal
+	Princess: Todos NPCs adquiridos
+	TownCat: Use {$ItemName.LicenseCat} [i:LicenseCat], vendido pela Zoologista
+	TownDog: Use {$ItemName.LicenseDog} [i:LicenseDog], vendido pela Zoologista
+	TownBunny: Use {$ItemName.LicenseBunny} [i:LicenseBunny], vendido pela Zoologista
+	TownSlimeBlue: Geleia Rei foi derrotado
+	TownSlimeGreen: Quando há uma festa acontecendo naturalmente
+	TownSlimeOld: Desbloqueie um Báu Antigo na camada de Caverna com uma {$ItemName.GoldenKey} [i:GoldenKey] depois de derrotar o Esqueletron
+	TownSlimePurple: Estoure o balão da Geleia Balão Desastrada na Camada do Espaço.
+	TownSlimeRainbow: Jogue {$ItemName.GelBalloon} [i:GelBalloon] dentro do Shimmer.
+	TownSlimeRed: Pescado durante uma Lua de Sangue
+	TownSlimeYellow: Use {$ItemName.PurificationPowder} [i:PurificationPowder] em um Sapo Místico na Selva
+	TownSlimeCopper: Jogue um {$ItemName.CopperHelmet} [i:CopperHelmet] ou a {$ItemName.CopperShortsword} [i:CopperShortsword] numa Geleia
 }

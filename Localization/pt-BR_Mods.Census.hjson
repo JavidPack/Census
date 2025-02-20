@@ -51,7 +51,8 @@ SpawnConditions: {
 	BestiaryGirl: Complete pelo menos 10% do bestiário
 	Dryad:
 		'''
-		Olho de Cthulhu, o Devorador de Mundos, o Cérebro de Cthulhu ou o Esqueletron derrotados
+		Olho de Cthulhu, o Devorador de Mundos, 
+		o Cérebro de Cthulhu ou o Esqueletron derrotados
 		'''
 	Painter: 8 outros NPCs de cidade foram adquiridos
 	Golfer: Encontrado no Deserto Subterrâneo
@@ -66,9 +67,9 @@ SpawnConditions: {
 	Wizard: Encontrado na camada de Caverna no Modo Difícil
 	TaxCollector: No Modo Difícil, Uma Alma Torturada é transformada com {$ItemName.PurificationPowder} [i:PurificationPowder] no Submundo
 	Truffle: Uma casa está disponível em um Bioma de Cogumelos Brilhantes acima do solo durante o Modo Difícil
-	Pirate: 	Uma Invasão Pirata foi derrotada
+	Pirate: Uma Invasão Pirata foi derrotada
 	Steampunker: Um chefe mecânico foi derrotado
-	Cyborg: 	Plantera foi derrotada
+	Cyborg: Plantera foi derrotada
 	SantaClaus: A Legião Congelada foi derrotada e é Natal
 	Princess: Todos NPCs adquiridos
 	TownCat: Use {$ItemName.LicenseCat} [i:LicenseCat], vendido pela Zoologista

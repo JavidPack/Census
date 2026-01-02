@@ -38,49 +38,55 @@ Configs: {
 	}
 }
 
-Next: Next
+Next:
+	'''
+	{0}
+	Next
+	'''
+# {0} - NPC name, {1} - condition
+Condition: "{0} - {1}"
 
 SpawnConditions: {
 	Unknown: Conditions unknown
-	Guide: Always available, spawned on world generation
-	Merchant: Have [i/s50:SilverCoin] in your inventory
-	Nurse: Have more than 100 HP and for the Merchant to have arrived
-	Demolitionist: Have an explosive in your inventory
-	DyeTrader: Find dye item and either defeat boss or find strange plant
-	Angler: Find on the ocean
-	BestiaryGirl: Fill at least 10% of the bestiary
+	Guide: Always available; spawns when a new world is created
+	Merchant: Have at least [i/s50:SilverCoin] in your inventory
+	Nurse: Have more than 100 max HP and the Merchant has arrived
+	Demolitionist: Have an explosive in your inventory and the Merchant has arrived
+	DyeTrader: Have a dye, dye plant, Strange Plant, or Dye Vat in your inventory and at least 4 other town NPCs have arrived
+	Angler: Found on the Ocean
+	BestiaryGirl: Fill at least 10% of the Bestiary
 	Dryad:
 		'''
-		The Eye of Cthulhu, Eater of Worlds,
-		Brain of Cthulhu, or Skeletron has been defeated
+		Defeat either the Eye of Cthulhu,
+		Eater of Worlds, Brain of Cthulhu, or Skeletron
 		'''
-	Painter: Acquire 8 other townspeople
-	Golfer: Find in the underground desert
+	Painter: Have at least 8 other town NPCs arrived
+	Golfer: Find in the Underground Desert
 	ArmsDealer: Have bullets or a gun in your inventory
-	DD2Bartender: When Eater of World or Brain of Cthulhu has been defeated, found in world
-	Stylist: Find in a spider nest
-	GoblinTinkerer: Find in the world after a goblin invasion has been defeated
-	WitchDoctor: When Queen Bee has been defeated
-	Clothier: When Skeletron has been defeated
-	Mechanic: Find in the dungeon
-	PartyGirl: Acquire 14 other townspeople
-	Wizard: Find in the cavern layer in hardmode
-	TaxCollector: In hardmode, purify tortured soul with {$ItemName.PurificationPowder} [i:PurificationPowder] in the underworld
-	Truffle: In hardmode, build a house in an above ground mushroom biome
-	Pirate: When a Pirate invasion has been defeated
-	Steampunker: When a Mechanical boss has been defeated
-	Cyborg: When Plantera has been defeated
-	SantaClaus: When Frost Legion has been defeated, only during December 15-31
-	Princess: Have all other town npcs in the world
-	TownCat: Use {$ItemName.LicenseCat} [i:LicenseCat], sold by Zoologist
-	TownDog: Use {$ItemName.LicenseDog} [i:LicenseDog], sold by Zoologist
-	TownBunny: Use {$ItemName.LicenseBunny} [i:LicenseBunny], sold by Zoologist
-	TownSlimeBlue: When King Slime has been defeated.
-	TownSlimeGreen: When there is a naturally occurring Party.
-	TownSlimeOld: Unlock an Old Shaking Chest in the Cavern Layer with a {$ItemName.GoldenKey} [i:GoldenKey] after defeating Skeletron.
-	TownSlimePurple: Break the balloon of the Clumsy Balloon Slime in the Space Layer.
-	TownSlimeRainbow: Drop {$ItemName.GelBalloon} [i:GelBalloon] into Shimmer.
-	TownSlimeRed: Fished up during a Blood Moon.
-	TownSlimeYellow: Use {$ItemName.PurificationPowder} [i:PurificationPowder] on a Mystic Frog in the Jungle.
-	TownSlimeCopper: Drop a {$ItemName.CopperHelmet} [i:CopperHelmet] or a {$ItemName.CopperShortsword} [i:CopperShortsword] on a slime.
+	DD2Bartender: Find in your world after the Eater of Worlds or Brain of Cthulhu has been defeated
+	Stylist: Find in Spider Nests
+	GoblinTinkerer: Find in the Cavern layer after a goblin invasion has been defeated
+	WitchDoctor: Defeat the Queen Bee
+	Clothier: Defeat Skeletron
+	Mechanic: Find in the Dungeon
+	PartyGirl: Has a low chance of appearing after at least 14 other town NPCs have arrived
+	Wizard: Find in the Cavern layer during Hardmode
+	TaxCollector: Purify a Tortured Soul with [i:PurificationPowder] {$ItemName.PurificationPowder} in the Underworld during Hardmode
+	Truffle: Build a house in the surface Glowing Mushroom biome during Hardmode
+	Pirate: Defeat a Pirate invasion
+	Steampunker: Defeat any Mechanical boss
+	Cyborg: Defeat Plantera
+	SantaClaus: Arrives during the Christmas event, after the Frost Legion has been defeated
+	Princess: Have all of the vanilla town NPCs (except Santa Claus) present in your world
+	TownCat: Use [i:LicenseCat] {$ItemName.LicenseCat}, sold by the Zoologist
+	TownDog: Use [i:LicenseDog] {$ItemName.LicenseDog}, sold by the Zoologist
+	TownBunny: Use [i:LicenseBunny] {$ItemName.LicenseBunny}, sold by the Zoologist
+	TownSlimeBlue: Defeat King Slime
+	TownSlimeGreen: Appears during a naturally occurring Party
+	TownSlimeOld: Unlock an Old Shaking Chest in the Cavern layer with a [i:GoldenKey] {$ItemName.GoldenKey} after defeating Skeletron
+	TownSlimePurple: Break the balloon of the Clumsy Balloon Slime in the Space layer
+	TownSlimeRainbow: Drop a [i:GelBalloon] {$ItemName.GelBalloon} into Shimmer
+	TownSlimeRed: Can be fished up during a Blood Moon
+	TownSlimeYellow: Use [i:PurificationPowder] {$ItemName.PurificationPowder} on a Mystic Frog in the Jungle
+	TownSlimeCopper: Drop a [i:CopperHelmet] {$ItemName.CopperHelmet} or a [i:CopperShortsword] {$ItemName.CopperShortsword} on a slime enemy
 }

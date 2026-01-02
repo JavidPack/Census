@@ -38,7 +38,13 @@ Configs: {
 	}
 }
 
-Next: Próximo
+Next:
+	'''
+	{0}
+	Próximo
+	'''
+# {0} - NPC name, {1} - condition
+// Condition: "{0} - {1}"
 
 SpawnConditions: {
 	Unknown: Condições desconhecidas

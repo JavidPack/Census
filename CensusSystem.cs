@@ -21,8 +21,6 @@ namespace Census
 		internal static CensusSystem instance;
 		internal static bool calculated;
 
-		private LocalizedText Next;
-
 		public override void Load() {
 			/*
 			 * WorldGen.spawnDelay controls when TrySpawningTownNPC->SpawnTownNPC is called. 20 ticks in updateworld. random tiles until a house is found.
@@ -49,7 +47,6 @@ namespace Census
 			*/
 			instance = this;
 			calculated = false;
-			Next = Language.GetText(Mod.GetLocalizationKey("Next"));
 			//modTownNPCsInfos = new List<TownNPCInfo>();
 
 			Terraria.IL_Main.UpdateTime_SpawnTownNPCs += Main_UpdateTime_SpawnTownNPCs;
@@ -278,7 +275,7 @@ namespace Census
 									//text = Main.npc[missingNPCWhoAmI].FullName;
 									text = Lang.GetNPCNameValue(missingNPCType);
 									if (WorldGen.prioritizedTownNPCType == missingNPCType)
-										text += $"\n{Next.Value}";
+										text = Language.GetTextValue("Mods.Census.Next", Lang.GetNPCNameValue(missingNPCType));
 									else if (Main.townNPCCanSpawn[missingNPCType]) {
 										//text += "\nOn their way!";
 									}
@@ -287,7 +284,7 @@ namespace Census
 											if (unknown)
 												text += $" - Townspeople spawn during the day";
 											else
-												text += $" - {t.conditions.Value}";
+                                                text = Language.GetTextValue("Mods.Census.Condition", Lang.GetNPCNameValue(missingNPCType), t.conditions.Value);
 											//	text += "\nNot coming" + $"\nNeeds: {condition}";
 										}
 									}

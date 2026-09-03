@@ -42,6 +42,8 @@ Configs: {
 }
 
 Next: Siguiente
+# {0} - NPC name, {1} - condition
+// Condition: "{0} - {1}"
 
 SpawnConditions: {
 	Unknown: Condiciones desconocidas

@@ -61,7 +61,7 @@ SpawnConditions: {
 	Golfer: Se encuentra en el desierto subterráneo
 	ArmsDealer: Ten balas o un arma de fuego en tu inventario
 	DD2Bartender:
-	    '''
+		'''
 		Cuando el [c/9666a2:devoramundos] o el [c/d84237:cerebro de Cthulhu] haya sido derrotado,
 		se encontrará inconsciente en la superficie
 		'''
@@ -73,12 +73,12 @@ SpawnConditions: {
 	PartyGirl: Adquiere a otros 14 NPC en el mundo
 	Wizard: Encuéntralo en la capa de la caverna, en el modo difícil/hardmode
 	TaxCollector:
-	    '''
+		'''
 		En el modo difícil/hardmode, encuentra al [c/f4d58d:alma torturada] en el [c/d84237:inframundo] y
 		purifícalo usando {$ItemName.PurificationPowder} [i:PurificationPowder]
 		'''
-	Truffle: 
-	    '''
+	Truffle:
+		'''
 		En el modo difícil/hardmode, construye una casa en la superficie del bioma de champiñón
 		[c/f4d58d:Como crear un bioma de champiñón artificial]
 		Primero se deben colocar muchos bloques de lodo y sembrar semillas de champiñón de césped [i:194].
@@ -89,7 +89,7 @@ SpawnConditions: {
 	Cyborg: Cuando [c/00ff00:Plantera] haya sido derrotada
 	SantaClaus: Cuando la [c/00FFFF:legión de escarcha] haya sido derrotada, solo durante el período del 15 al 31 de diciembre
 	Princess:
-	    '''
+		'''
 		Tienes todos los demás NPC de la ciudad, en el mundo.
 		No cuentan las mascotas, Papá Noel ni los NPC añadidos por mods.
 		'''
@@ -99,7 +99,7 @@ SpawnConditions: {
 	TownSlimeBlue: Cuando el [c/0066cc:Rey slime] ha sido derrotado
 	TownSlimeGreen: Cuando hay una fiesta de forma natural
 	TownSlimeOld:
-	    '''
+		'''
 		Desbloquea un [c/f4d58d:cofre viejo tembloroso] en la capa de la caverna, con una {$ItemName.GoldenKey} [i:GoldenKey],
 		después de que Esqueletrón ha sido derrotado
 		'''

@@ -2,7 +2,7 @@ en-US, 48/48, 100%, missing 0
 de-DE, 0/48, 0%, missing 48
 it-IT, 0/48, 0%, missing 48
 fr-FR, 0/48, 0%, missing 48
-es-ES, 0/48, 0%, missing 48
+es-ES, 48/48, 100%, missing 0
 ru-RU, 48/48, 100%, missing 0
 zh-Hans, 48/48, 100%, missing 0
 pt-BR, 48/48, 100%, missing 0

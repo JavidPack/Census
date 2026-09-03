@@ -57,7 +57,7 @@ SpawnConditions: {
 	// BestiaryGirl: Fill at least 10% of the Bestiary
 	/* Dryad:
 		'''
-		Defeat either the Eye of Cthulhu,
+		Defeat the Eye of Cthulhu,
 		Eater of Worlds, Brain of Cthulhu, or Skeletron
 		''' */
 	// Painter: Have at least 8 other town NPCs arrived

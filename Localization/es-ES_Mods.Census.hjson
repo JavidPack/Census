@@ -1,92 +1,113 @@
 Configs: {
 	CensusConfigClient: {
-		// DisplayName: Census Config Client
+		DisplayName: Census configuración del cliente
 
 		ShowLocatingArrow: {
-			// Label: Show NPC Locating Arrows
-			/* Tooltip:
+			Label: Mostrar flechas de localización de NPC
+			Tooltip:
 				'''
-				Hover over an NPC in the housing menu to see which direction the NPC is.
-				Useful for finding Town NPC you lost track of.
-				''' */
+				Coloca el cursor sobre un NPC en el menú de [c/f4d58d:vivienda] para ver en qué dirección se encuentra.
+				Útil para encontrar al NPC que has perdido de vista.
+				'''
 		}
 
 		ArrowColor: {
-			// Label: Locating Arrow Color
-			// Tooltip: ""
+			Label: Color de la flecha de localización
+			Tooltip: ""
 		}
 
 		DisableConditionsText: {
-			// Label: Disable Spawn Conditions Text
-			/* Tooltip:
+			Label: Deshabilitar el texto de las condiciones de aparición
+			Tooltip:
 				'''
-				Enable this to prevent the spawn condition text from showing.
-				Use this if you want to see Town NPCs that could spawn but don't want to be spoiled on how to actually get them to spawn.
-				''' */
+				Habilite esto para evitar que aparezcan las condiciones que se deben cumplir para que un NPC se mude contigo.
+				Útil si solo quieres ver los NPC que podrían aparecer, pero no quieres que te arruinen
+				la experiencia de descubrir cuáles son las condiciones que se deben cumplir,
+				para que aparezcan los NPC de la lista y que todavía no se han mudado contigo.
+				'''
 		}
 
-		// Headers.DeveloperOptions: "[c/ff0000:Developer Options]"
+		Headers.DeveloperOptions: "[c/ff0000:Opciones de desarrollador]"
 
 		DisableAutoLocalization: {
-			// Label: Disable Auto Localization
-			/* Tooltip:
+			Label: Desactivar la localización automática
+			Tooltip:
 				'''
-				By default, Census will add localization keys for spawn condition text for Town NPC contained in mods being built.
-				Set to true to disable this behavior.
-				''' */
+				De forma predeterminada, el mod [c/f4d58d:Census - Town NPC Checklist] agregará [c/f4d58d:claves/keys] de localización para
+				el texto de condición de aparición, de los NPC de la ciudad, contenidos en los mods que se están construyendo.
+				Habilite esta opción para deshabilitar este comportamiento.
+				'''
 		}
 	}
 }
 
-/* Next:
-	'''
-	{0}
-	Next
-	''' */
+Next: Siguiente
 # {0} - NPC name, {1} - condition
 // Condition: "{0} - {1}"
 
 SpawnConditions: {
-	// Unknown: Conditions unknown
-	// Guide: Always available; spawns when a new world is created
-	// Merchant: Have at least [i/s50:SilverCoin] in your inventory
-	// Nurse: Have more than 100 max HP and the Merchant has arrived
-	// Demolitionist: Have an explosive in your inventory and the Merchant has arrived
-	// DyeTrader: Have a dye, dye plant, Strange Plant, or Dye Vat in your inventory and at least 4 other town NPCs have arrived
-	// Angler: Found on the Ocean
-	// BestiaryGirl: Fill at least 10% of the Bestiary
-	/* Dryad:
+	Unknown: Condiciones desconocidas
+	Guide: Siempre disponible, aparece al comenzar la partida
+	Merchant: Ten 50 [i/s:SilverCoin] en tu inventario
+	Nurse: Tener más de 100 HP máxima, y que el [c/f4d58d:mercader] haya llegado
+	Demolitionist: Ten un explosivo en tu inventario
+	DyeTrader: Ten cualquier tinte u objeto que se use para hacer tintes en tu inventario y derrota un jefe, o encuentra una [c/f4d58d:planta extraña]
+	Angler: Se encuentra en el océano
+	BestiaryGirl: Llene al menos el 10% del [c/00FFFF:bestiario]
+	Dryad:
 		'''
-		Defeat either the Eye of Cthulhu,
-		Eater of Worlds, Brain of Cthulhu, or Skeletron
-		''' */
-	// Painter: Have at least 8 other town NPCs arrived
-	// Golfer: Find in the Underground Desert
-	// ArmsDealer: Have bullets or a gun in your inventory
-	// DD2Bartender: Find in your world after the Eater of Worlds or Brain of Cthulhu has been defeated
-	// Stylist: Find in Spider Nests
-	// GoblinTinkerer: Find in the Cavern layer after a goblin invasion has been defeated
-	// WitchDoctor: Defeat the Queen Bee
-	// Clothier: Defeat Skeletron
-	// Mechanic: Find in the Dungeon
-	// PartyGirl: Has a low chance of appearing after at least 14 other town NPCs have arrived
-	// Wizard: Find in the Cavern layer during Hardmode
-	// TaxCollector: Purify a Tortured Soul with [i:PurificationPowder] {$ItemName.PurificationPowder} in the Underworld during Hardmode
-	// Truffle: Build a house in the surface Glowing Mushroom biome during Hardmode
-	// Pirate: Defeat a Pirate invasion
-	// Steampunker: Defeat any Mechanical boss
-	// Cyborg: Defeat Plantera
-	// SantaClaus: Arrives during the Christmas event, after the Frost Legion has been defeated
-	// Princess: Have all of the vanilla town NPCs (except Santa Claus) present in your world
-	// TownCat: Use [i:LicenseCat] {$ItemName.LicenseCat}, sold by the Zoologist
-	// TownDog: Use [i:LicenseDog] {$ItemName.LicenseDog}, sold by the Zoologist
-	// TownBunny: Use [i:LicenseBunny] {$ItemName.LicenseBunny}, sold by the Zoologist
-	// TownSlimeBlue: Defeat King Slime
-	// TownSlimeGreen: Appears during a naturally occurring Party
-	// TownSlimeOld: Unlock an Old Shaking Chest in the Cavern layer with a [i:GoldenKey] {$ItemName.GoldenKey} after defeating Skeletron
-	// TownSlimePurple: Break the balloon of the Clumsy Balloon Slime in the Space layer
-	// TownSlimeRainbow: Drop a [i:GelBalloon] {$ItemName.GelBalloon} into Shimmer
-	// TownSlimeRed: Can be fished up during a Blood Moon
-	// TownSlimeYellow: Use [i:PurificationPowder] {$ItemName.PurificationPowder} on a Mystic Frog in the Jungle
-	// TownSlimeCopper: Drop a [i:CopperHelmet] {$ItemName.CopperHelmet} or a [i:CopperShortsword] {$ItemName.CopperShortsword} on a slime enemy
+		Cuando el [c/d8827b:ojo de Cthulhu], [c/9666a2:devoramundos],
+		el [c/d84237:cerebro de Cthulhu], o Esqueletrón, haya sido derrotado
+		'''
+	Painter: Adquiere a otros 8 NPC en el mundo
+	Golfer: Se encuentra en el desierto subterráneo
+	ArmsDealer: Ten balas o un arma de fuego en tu inventario
+	DD2Bartender:
+		'''
+		Cuando el [c/9666a2:devoramundos] o el [c/d84237:cerebro de Cthulhu] haya sido derrotado,
+		se encontrará inconsciente en la superficie
+		'''
+	Stylist: A veces se encuentra en el interior de los nidos de arañas
+	GoblinTinkerer: A veces se encuentra en las cuevas, después de derrotar al [c/f4d58d:ejército de duendes]
+	WitchDoctor: Cuando la [c/f5b704:abeja reina] haya sido derrotada
+	Clothier: Cuando Esqueletrón ha sido derrotado
+	Mechanic: Se encuentra en el interior de la mazmorra
+	PartyGirl: Adquiere a otros 14 NPC en el mundo
+	Wizard: Encuéntralo en la capa de la caverna, en el modo difícil/hardmode
+	TaxCollector:
+		'''
+		En el modo difícil/hardmode, encuentra al [c/f4d58d:alma torturada] en el [c/d84237:inframundo] y
+		purifícalo usando {$ItemName.PurificationPowder} [i:PurificationPowder]
+		'''
+	Truffle:
+		'''
+		En el modo difícil/hardmode, construye una casa en la superficie del bioma de champiñón
+		[c/f4d58d:Como crear un bioma de champiñón artificial]
+		Primero se deben colocar muchos bloques de lodo y sembrar semillas de champiñón de césped [i:194].
+		Cuando se empiece a expandir el césped azul y cambie el fondo, significa que has creado dicho bioma.
+		'''
+	Pirate: Cuando una [c/f4d58d:invasión pirata] haya sido derrotada
+	Steampunker: Cuando un jefe mecánico ha sido derrotado
+	Cyborg: Cuando [c/00ff00:Plantera] haya sido derrotada
+	SantaClaus: Cuando la [c/00FFFF:legión de escarcha] haya sido derrotada, solo durante el período del 15 al 31 de diciembre
+	Princess:
+		'''
+		Tienes todos los demás NPC de la ciudad, en el mundo.
+		No cuentan las mascotas, Papá Noel ni los NPC añadidos por mods.
+		'''
+	TownCat: Usa la {$ItemName.LicenseCat} [i:LicenseCat], es vendido por la [c/f4d58d:Zoóloga]
+	TownDog: Usa la {$ItemName.LicenseDog} [i:LicenseDog], es vendido por la [c/f4d58d:Zoóloga]
+	TownBunny: Usa la {$ItemName.LicenseBunny} [i:LicenseBunny], es vendido por la [c/f4d58d:Zoóloga]
+	TownSlimeBlue: Cuando el [c/0066cc:Rey slime] ha sido derrotado
+	TownSlimeGreen: Cuando hay una fiesta de forma natural
+	TownSlimeOld:
+		'''
+		Desbloquea un [c/f4d58d:cofre viejo tembloroso] en la capa de la caverna, con una {$ItemName.GoldenKey} [i:GoldenKey],
+		después de que Esqueletrón ha sido derrotado
+		'''
+	TownSlimePurple: Rompe el globo que sostiene al [c/f4d58d:slime patoso] en la capa espacial
+	TownSlimeRainbow: Dejar caer el {$ItemName.GelBalloon} [i:GelBalloon] en el fulgor
+	TownSlimeRed: Pescado durante la [c/d84237:luna de sangre]
+	TownSlimeYellow: Usa {$ItemName.PurificationPowder} [i:PurificationPowder] sobre una [c/ff6088:rana mística] en la jungla
+	TownSlimeCopper: Deja caer un {$ItemName.CopperHelmet} [i:CopperHelmet] o una {$ItemName.CopperShortsword} [i:CopperShortsword] sobre un slime
 }
